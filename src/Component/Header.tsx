@@ -1,9 +1,8 @@
+import "./Css/header.css";
 import logo from "../assets/logo.png";
 import iHome from "../assets/images/nav_home.png";
 import iAi from "../assets/images/nav_ai.png";
-import iAr from "../assets/images/nav_ar.png";
 import iBlog from "../assets/images/nav_blog.png";
-import iCgi from "../assets/images/nav_cgi.png";
 import iContact from "../assets/images/nav_contact.png";
 import iPartners from "../assets/images/nav_partners.png";
 import iSoftware from "../assets/images/nav_software.png";
@@ -29,7 +28,7 @@ export default function Header() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ms-auto justify-content-evenly mb-2 cs-w-70 mb-lg-0">
+            <ul className="navbar-nav nav-animation ms-auto justify-content-evenly mb-2 cs-w-50 mb-lg-0">
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="#">
                   {" "}
@@ -55,7 +54,7 @@ export default function Header() {
                   VR
                 </a>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <a className="nav-link" href="#">
                   <img className="d-block m-auto nav-icon" src={iCgi} />
                   CGI
@@ -66,7 +65,7 @@ export default function Header() {
                   <img className="d-block m-auto nav-icon" src={iAr} />
                   AR
                 </a>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <a className="nav-link" href="#">
                   <img className="d-block m-auto nav-icon" src={iPartners} />
