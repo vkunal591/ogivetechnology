@@ -13,7 +13,19 @@ import ilogo from "../assets/iLogo.png";
 
 export default function Service() {
   return (
-    <div className="row cs-mt-8">
+    <div className="row cs-mt-3 head">
+      <h5 className="card-header cs-title-style  bg-transparent border-0 mb-5">
+        <span>
+          <img
+            className="m-0"
+            src={ilogo}
+            alt=""
+            width={10}
+            style={{ rotate: "0deg" }}
+          />
+        </span>
+        SOFTWARE
+      </h5>
       <div className="col-7">
         <video
           className="w-100"
@@ -21,6 +33,7 @@ export default function Service() {
           muted
           loop
           autoPlay={true}
+          style={{ filter: "brightness(1.04)" }}
         ></video>
       </div>
       <div className="col ">
@@ -28,18 +41,6 @@ export default function Service() {
           className="card bg-transparent m-auto text-left border-0 text-dark bg-light mb-3"
           style={{ maxWidth: "100%" }}
         >
-          <div className="card-header border-0 bg-transparent">
-            <span>
-              <img
-                className="mx-1"
-                src={ilogo}
-                alt=""
-                width={8}
-                style={{ rotate: "0deg" }}
-              />
-            </span>
-            SOFTWARE
-          </div>
           <div className="card-body py-0">
             <h5 className="card-title">
               We Are The leading UK software Developers
