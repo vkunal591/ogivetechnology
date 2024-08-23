@@ -79,6 +79,67 @@
 .cs-mt-8 {
   margin-top: 8rem !important;
 }
+.cs-mt-9 {
+  margin-top: 9rem !important;
+}
+.cs-mt-10 {
+  margin-top: 10rem !important;
+}
+
+/* === BASE HEADING === */
+
+.cs-title-style {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+  font-weight: 300;
+  font-size: 35px;
+  color: #080808;
+  -webkit-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+}
+
+.cs-title-style span {
+  display: block;
+  font-size: 0.5em;
+  line-height: 1.3;
+}
+.cs-title-style em {
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* === HEADING STYLE #1 === */
+.head .cs-title-style {
+  text-align: center;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+}
+.head .cs-title-style :before {
+  width: 28px;
+  height: 5px;
+  display: block;
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  margin-left: -14px;
+  background-color: #b80000;
+}
+.head .cs-title-style :after {
+  width: 100px;
+  height: 1px;
+  display: block;
+  content: "";
+  position: relative;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  left: 50%;
+  margin-left: -50px;
+  background-color: #b80000;
+}
 
 /* Nav Bar start */
 .nav-logo {
@@ -92,14 +153,16 @@
   justify-content: flex-end;
   position: absolute;
   width: 100%;
-  min-height: 700px;
-  height: 100vh;
+  /* min-height:82.2%; */
+  height: 82.2%;
   background: rgb(131, 58, 180);
   background: linear-gradient(
     90deg,
-    rgba(131, 58, 180, 0) 40%,
-    rgba(255, 255, 255, 1) 65%,
-    rgba(255, 255, 255, 1) 100%
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 39%,
+    rgba(0, 0, 0, 0.91008613445378151) 58%,
+    rgba(0, 0, 0, 0.9860994397759104) 60%,
+    rgba(0, 0, 0, 1) 76%
   );
 }
 
@@ -112,14 +175,15 @@
     rgba(255, 255, 255, 1) 100%
   );
 }
-/* 
-.cs-title{
+
+.cs-title {
+  color: #f1f1f1;
   border: none;
-  border-bottom:4px solid #d81f2a;
+  border-bottom: 4px solid #d81f2a;
   box-shadow: 2px 2px 5px black;
   width: max-content;
-  
-} */
+}
+
 /* Home Component End */
 
 /* Service Component start */
@@ -162,10 +226,6 @@
   margin: auto;
   /* height: 60px; */
   transition: 0.5s ease-in-out;
-}
-
-.product-grid-image:hover {
-  filter: drop-shadow(2px 2px 2px #d81f2a);
 }
 
 /* Product Component End */

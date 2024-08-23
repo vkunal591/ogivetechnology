@@ -1,4 +1,5 @@
 import "./App.css";
+import Footer from "./Component/Footer";
 import Header from "./Component/Header";
 import Home from "./Component/Home";
 import Product from "./Component/Product";
@@ -19,9 +20,7 @@ function App() {
       <Home />
       <Service />
       <Product />
-      <footer className="row">
-        <div className="col">Column</div>
-      </footer>
+   <Footer />
     </div>
   );
 }
