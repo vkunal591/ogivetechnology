@@ -5,6 +5,11 @@
   text-align: center;
 }
 
+.row{
+  width: 100%!important;
+  margin:0px;
+}
+
 .thm-env-color {
   background-color: #d81f2a !important;
   color: white !important;
@@ -147,67 +152,6 @@
 }
 /* Nav Bar End */
 
-/* Home Component Start */
-.home-content-text-box {
-  display: flex;
-  justify-content: flex-end;
-  position: absolute;
-  width: 100%;
-  /* min-height:82.2%; */
-  height: 82.2%;
-  background: rgb(131, 58, 180);
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0) 39%,
-    rgba(0, 0, 0, 0.91008613445378151) 58%,
-    rgba(0, 0, 0, 0.9860994397759104) 60%,
-    rgba(0, 0, 0, 1) 76%
-  );
-}
-
-.home-content-box {
-  background: rgb(131, 58, 180);
-  background: linear-gradient(
-    90deg,
-    rgba(131, 58, 180, 0) 0%,
-    rgba(255, 255, 255, 1) 60%,
-    rgba(255, 255, 255, 1) 100%
-  );
-}
-
-.cs-title {
-  color: #f1f1f1;
-  border: none;
-  border-bottom: 4px solid #d81f2a;
-  box-shadow: 2px 2px 5px black;
-  width: max-content;
-}
-
-/* Home Component End */
-
-/* Service Component start */
-.grid-image-box {
-  display: flex;
-  text-align: center;
-  height: 90px !important;
-  width: 100px !important;
-  margin: auto !important;
-  margin-bottom: 20px !important;
-}
-
-.grid-image {
-  width: 50px;
-  margin: auto;
-  /* height: 60px; */
-  transition: 0.5s ease-in-out;
-}
-
-.grid-image:hover {
-  filter: drop-shadow(2px 2px 2px #d81f2a);
-}
-
-/* Service Component End */
 
 /* Product Component start */
 .product-grid-image-box {
@@ -229,3 +173,23 @@
 }
 
 /* Product Component End */
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+/* Tablate or Laptop */
+/* @media (min-width: 768px) and (max-width: 992px){...} */
+
+/* Mobile Phone */
+/* @media (min-width: 480px) and (max-width: 767px) {...}  */

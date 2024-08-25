@@ -1,4 +1,9 @@
 import iLogo from "../assets/logo-footer.43e2938c.png";
+import iFacebook from "../assets/facebook.04d54a32.png";
+import iInstagram from "../assets/instagram.0634a5ba.png";
+import iTwitter from "../assets/twitter-256.46571576.png";
+import iLinkedin from "../assets/linkedin.38b43a47.png";
+
 import "./Css/footer.css";
 
 export default function Footer() {
@@ -66,14 +71,17 @@ export default function Footer() {
                 </div>
                 <div className="footer-social-icon">
                   <span>Follow us</span>
-                  <a href="#">
-                    <i className="fab fa-facebook-f facebook-bg">f</i>
+                  <a href="https://www.facebook.com/Ogive-Technology-485725495104947/">
+                    <img src={iFacebook} className="facebook-bg rounded" alt="facebook" width={30} />
                   </a>
-                  <a href="#">
-                    <i className="fab fa-twitter twitter-bg">t</i>
+                  <a href="https://twitter.com/OgiveTechnology">
+                    <img src={iTwitter} className="twitter-bg rounded" alt="Twitter" width={30} />
                   </a>
-                  <a href="#">
-                    <i className="fab fa-google-plus-g google-bg">g</i>
+                  <a href="https://www.instagram.com/ogivetech/">
+                    <img src={iInstagram} className="google-bg rounded" alt="Instagram" width={30} />
+                  </a>
+                  <a href="https://www.linkedin.com/company-beta/13356002/">
+                    <img src={iLinkedin} className="twitter-bg rounded" alt="Linkedin" width={30} />
                   </a>
                 </div>
               </div>
@@ -88,13 +96,13 @@ export default function Footer() {
                     <a href="#">Home</a>
                   </li>
                   <li>
-                    <a href="#">about</a>
+                    <a href="#">Products</a>
                   </li>
                   <li>
-                    <a href="#">services</a>
+                    <a href="#">Our Services</a>
                   </li>
                   <li>
-                    <a href="#">portfolio</a>
+                    <a href="#">Indoustries</a>
                   </li>
                   <li>
                     <a href="#">Contact</a>
@@ -103,7 +111,7 @@ export default function Footer() {
                     <a href="#">About us</a>
                   </li>
                   <li>
-                    <a href="#">Our Services</a>
+                    <a href="#">Our Blog</a>
                   </li>
                   <li>
                     <a href="#">Expert Team</a>
