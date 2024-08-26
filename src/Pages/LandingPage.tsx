@@ -1,4 +1,3 @@
-import React from "react";
 import Service from "../Component/Service";
 import Product from "../Component/Product";
 import Home from "../Component/Home";

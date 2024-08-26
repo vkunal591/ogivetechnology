@@ -2,7 +2,7 @@ import vHome from "../assets/video/ogiveintro.b4f4a757.mp4";
 
 export default function Home() {
   return (
-    <div className="row flex-nowrap h-75 bg-black w-100 cs-mt-6">
+    <div className="row flex-nowrap h-75 bg-black w-100 cs-mt-4">
       <video
         className="h-100 cs-w-70 px-0 "
         style={{ borderEndEndRadius: "500px" }}
