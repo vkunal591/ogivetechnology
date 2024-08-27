@@ -1,0 +1,97 @@
+/* Service Component start */
+.service-box {
+  display: inline-grid;
+  grid-template-columns: auto auto auto auto auto;
+  justify-content: center;
+}
+.grid-image-box {
+  display: flex;
+  text-align: center;
+  height: 100px !important;
+  width: 100px !important;
+  margin: auto !important;
+  margin-bottom: 20px !important;
+}
+
+.grid-image {
+  width: 50px;
+  margin: auto;
+  /* height: 60px; */
+  transition: 0.5s ease-in-out;
+}
+
+.grid-image:hover {
+  filter: drop-shadow(2px 2px 2px #d81f2a);
+}
+
+/* Service Component End */
+
+/* Tablate or Laptop */
+@media (min-width: 992px) and (max-width: 1030px) {
+  .service-box {
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto;
+    justify-content: center;
+  }
+}
+
+/* Tablate or Laptop */
+@media (min-width: 768px) and (max-width: 992px) {
+  .service-box {
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+  }
+}
+
+/* Mobile Phone */
+@media (min-width: 310px) and (max-width: 767px) {
+  .service-box {
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+  }
+
+  .mobile-head {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 0px !important;
+    padding: 0px 10px;
+  }
+
+  .mobile-head > .col-6 {
+    width: 100%;
+  }
+
+  .items {
+    --itemWidth: min(300px, 100vw);
+    --itemWidthMinus: calc(-1 * var(--itemWidth));
+    height: max-content;
+    width: max-content;
+    display: grid;
+    grid-template-rows: repeat(1, max-content);
+    grid-template-columns: repeat(1, calc(1vw + var(--itemWidth)));
+    justify-items: center;
+    justify-content: center;
+  }
+}
+
+.anim-video-service {
+  position: relative;
+  border: 10px solid rgba(#000, 0.03);
+
+  &:before {
+    position: absolute;
+    z-index: -1; /* put it *behind* parent */
+    /* go outside padding-box by 
+     * a border-width ($b) in every direction */
+    top: -5px;
+    right: -5px;
+    bottom: -5px;
+    left: -5px;
+    border: inherit;
+    border-color: transparent;
+    background: inherit;
+  }
+}

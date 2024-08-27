@@ -11,8 +11,8 @@ import iSwayam from "../assets/robot.02e39f5f.png";
 
 export default function Product() {
   return (
-    <div className="row cs-mt-3 head">
-      <h5 className="card-header cs-title-style  bg-transparent border-0 mb-5">
+    <div className="row cs-mt-4 head mobile-head">
+      <h5 className="card-header cs-title-style  bg-transparent border-0 mb-5 mt-3">
         <span>
           <img
             className="mx-1"
@@ -26,8 +26,8 @@ export default function Product() {
       </h5>
       <div className="col">
         <div id="softwareContent" className="section-content">
-          <div className="container">
-            <div className="row items row-cols-4">
+          <div className="container  mobile-product-container">
+            <div className="row items">
               <a
                 className="nav-link text-secondary"
                 href="/projects/software/samsung-software"

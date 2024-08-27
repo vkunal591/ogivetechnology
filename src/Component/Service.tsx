@@ -1,4 +1,5 @@
-import animaOne from "../assets/Spark2024_Software_V01_wSFX.mp4";
+import "./Css/service.css";
+import animaOne from "../assets/video/ogiveintro1.7e16f8fc.mp4";
 import iAi from "../assets/images/microchip.png";
 import iCyberSecurity from "../assets/images/cyber-security.png";
 import iComputer from "../assets/images/computer.png";
@@ -13,22 +14,22 @@ import ilogo from "../assets/iLogo.png";
 
 export default function Service() {
   return (
-    <div className="row cs-mt-3 head">
-      <h5 className="card-header cs-title-style  bg-transparent border-0 mb-5">
+    <div className="row cs-mt-4 head mobile-head ">
+      <h5 className="card-header cs-title-style  bg-transparent border-0 mb-5 mt-3">
         <span>
           <img
             className="m-0"
             src={ilogo}
             alt=""
-            width={10}
+            width={8}
             style={{ rotate: "0deg" }}
           />
         </span>
-        SOFTWARE
+        SERVICE
       </h5>
-      <div className="col-7">
+      <div className="col-6 ">
         <video
-          className="w-100"
+          className="w-100 border rounded"
           src={animaOne}
           muted
           loop
@@ -36,27 +37,27 @@ export default function Service() {
           style={{ filter: "brightness(1.04)" }}
         ></video>
       </div>
-      <div className="col ">
+      <div className="col-6">
         <div
           className="card bg-transparent m-auto text-left border-0 text-dark bg-light mb-3"
           style={{ maxWidth: "100%" }}
         >
           <div className="card-body py-0">
             <h5 className="card-title">
-              We Are The leading UK software Developers
+              Our Service | Ogive
             </h5>
             <p className="card-text">
-              If you are looking for a software development agency, Spark's team
-              of expert developers based in our UK studio, offer the highest
-              quality solutions for all platforms. Our software developers offer
-              world renowned brands native app development solutions for iOS,
-              Android and Windows mobile and tablet devices.
+              Our services make the everyday life of our customers easier by
+              offering solutions in the fields of transportation, healthcare,
+              finance , defense and manufacturing. Our customers get to focus on
+              their core competence, our service experts take care of the
+              rest.In order to build long-term customer relationships,
             </p>
           </div>
         </div>
         <div id="softwareContent" className="section-content">
           <div className="container">
-            <div className="row justify-content-center row-cols-4">
+            <div className="row justify-content-center service-box">
               <a className="" href="/projects/software/samsung-software">
                 <div className="col border grid-image-box border-3 rounded-3">
                   <img
