@@ -1,16 +1,15 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "../Component/sidebars/Sidebar";
 
-
 export default function AdminPanel() {
   return (
-    <>
-      <Sidebar />
-      <main style={{ marginTop: "58px;" }}>
-        <div className="container pt-4">
+    <div className="container-fluid px-0">
+      <div className="row flex-nowrap">
+        <Sidebar />
+        <div className="col py-3 cs-mt-5">
           <Outlet />
         </div>
-      </main>
-    </>
+      </div>
+    </div>
   );
 }

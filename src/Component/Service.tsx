@@ -14,7 +14,7 @@ import ilogo from "../assets/iLogo.png";
 
 export default function Service() {
   return (
-    <div className="row cs-mt-6 head mobile-head ">
+    <div className="row cs-mt-4 head mobile-head ">
       <h5 className="card-header cs-title-style  bg-transparent border-0 mb-5 mt-3">
         <span>
           <img

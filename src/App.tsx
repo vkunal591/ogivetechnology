@@ -10,6 +10,8 @@ import Service from "./Component/Service";
 import AppHome from "./layout/AppHome";
 import LandingPage from "./Pages/LandingPage";
 import AdminPanel from "./layout/AdminPanel";
+import CreateUser from "./Pages/AdminPanel/Users/CreateUser";
+import UpdateProfile from "./Pages/AdminPanel/Users/UpdateProfile";
 
 // Helper function to check authentication
 const isAuthenticated = () => {
@@ -46,6 +48,10 @@ const router = createBrowserRouter([
           {
             path: "products",
             element: <Product />
+          },
+          {
+            path: "indoustries",
+            element: <Product />
           }
         ]
       }
@@ -59,14 +65,14 @@ const router = createBrowserRouter([
         path: "/admin",
         element: <AdminPanel />,
         children: [
-          { path: "", element: <Service /> },
+          { path: "", element: "Admin Control"},
           {
-            path: "software-service",
-            element: <Service />
+            path: "blog",
+            element: <CreateUser />
           },
           {
-            path: "products",
-            element: <Product />
+            path: "about",
+            element: <UpdateProfile />
           }
         ]
       }

@@ -3,7 +3,8 @@ ul {
   padding: 0px;
 }
 .footer-section {
-  background: #151414;
+  border-top: 1px solid #c5c5c5;
+  background: #ffffff;
   position: relative;
 }
 .footer-cta {
@@ -17,10 +18,10 @@ ul {
 }
 .cta-text {
   padding-left: 15px;
-  display: inline-block;
+  display: inline;
 }
 .cta-text h4 {
-  color: #fff;
+  color: #2f2f2f;
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 2px;
@@ -46,12 +47,13 @@ ul {
 }
 .footer-logo img {
   max-width: 200px;
+  display: block;
   /* filter: drop-shadow(2px 2px 5px white); */
 }
 .footer-text p {
   margin-bottom: 14px;
   font-size: 14px;
-  color: #7e7e7e;
+  color: #222222;
   line-height: 28px;
 }
 .footer-social-icon span {
@@ -74,17 +76,17 @@ ul {
   line-height: 38px;
   border-radius: 50%;
 }
-.facebook-bg {
+/* .facebook-bg {
   background: #3b5998;
 }
 .twitter-bg {
   background: #55acee;
 }
 .google-bg {
-  background: #d81f2a;
-}
+  background: #ff3694;
+} */
 .footer-widget-heading h3 {
-  color: #fff;
+  color: #383838;
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 40px;
@@ -100,7 +102,8 @@ ul {
   background: #d81f2a;
 }
 .footer-widget ul li {
-  display: inline-block;
+  display: block;
+  text-align: left;
   float: left;
   width: 50%;
   margin-bottom: 12px;
@@ -109,7 +112,7 @@ ul {
   color: #d81f2a;
 }
 .footer-widget ul li a {
-  color: #878787;
+  color: #2c2c2c;
   text-transform: capitalize;
 }
 .subscribe-form {
@@ -119,8 +122,8 @@ ul {
 .subscribe-form input {
   width: 100%;
   padding: 14px 28px;
-  background: #2e2e2e;
-  border: 1px solid #2e2e2e;
+  background: #e6e6e6;
+  border: 1px solid #b0b0b0;
   color: #fff;
 }
 .subscribe-form button {
@@ -137,13 +140,13 @@ ul {
   transform: rotate(-6deg);
 }
 .copyright-area {
-  background: #202020;
-  padding: 25px 0;
+  background: #d81f2a;
+  padding: 10px 0;
 }
 .copyright-text p {
   margin: 0;
   font-size: 14px;
-  color: #878787;
+  color: #ffffff;
 }
 .copyright-text p a {
   color: #d81f2a;
@@ -153,9 +156,9 @@ ul {
   margin-left: 20px;
 }
 .footer-menu li:hover a {
-  color: #d81f2a;
+  color: #2d2d2d;
 }
 .footer-menu li a {
   font-size: 14px;
-  color: #878787;
+  color: #ffffff;
 }
