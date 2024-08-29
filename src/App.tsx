@@ -10,31 +10,35 @@ import Service from "./Component/Service";
 import AppHome from "./layout/AppHome";
 import LandingPage from "./Pages/LandingPage";
 import AdminPanel from "./layout/AdminPanel";
-import CreateUser from "./Pages/AdminPanel/Users/CreateUser";
-import UpdateProfile from "./Pages/AdminPanel/Users/UpdateProfile";
+import ViewBlog from "./Pages/AdminPanel/Blog/ViewBlog";
+import CreateCategory from "./Pages/AdminPanel/Category/CreateCategory";
+import ViewCategory from "./Pages/AdminPanel/Category/ViewCategory";
+import Login from "./Pages/AdminPanel/Auth/Login";
+import ErrorPage from "./Pages/ErrorPage";
+import CreateBlog from "./Pages/AdminPanel/Blog/CreateBlog";
 
 // Helper function to check authentication
 const isAuthenticated = () => {
-  // const token = localStorage.getItem("token");
-  // return !!token;
-  return true;
+  const token = localStorage.getItem("token");
+  return !!token;
 };
 
 // AuthenticatedRoute component
 const AuthenticatedRoute = () => {
-  return isAuthenticated() ? <Outlet /> : <Navigate to="/" />;
+  return isAuthenticated() ? <Outlet /> : <Navigate to="auth/login" />;
 };
 
 // UnauthenticatedRoute component
-// const UnauthenticatedRoute = () => {
-//   return !isAuthenticated ? <Outlet /> : <Navigate to="/" />;
-// };
+const UnauthenticatedRoute = () => {
+  return !isAuthenticated() ? <Outlet /> : <Navigate to="/admin" />;
+};
+
 
 // Define the routes
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AuthenticatedRoute />,
+    element: <UnauthenticatedRoute />,
     children: [
       {
         path: "/",
@@ -55,7 +59,9 @@ const router = createBrowserRouter([
           }
         ]
       }
-    ]
+    ],
+    errorElement: <ErrorPage />
+
   },
   {
     path: "/admin",
@@ -67,14 +73,34 @@ const router = createBrowserRouter([
         children: [
           { path: "", element: "Admin Control"},
           {
-            path: "blog",
-            element: <CreateUser />
+            path: "blog/createblog",
+            element: <CreateBlog />
           },
           {
-            path: "about",
-            element: <UpdateProfile />
+            path: "blog/viewblog",
+            element: <ViewBlog />
+          }
+          ,
+          {
+            path: "category/createcategory",
+            element: <CreateCategory />
+          },
+          {
+            path: "category/viewcategory",
+            element: <ViewCategory />
           }
         ]
+      }
+    ],
+    errorElement: <ErrorPage />
+
+  },
+  { path: "admin",
+    element: <UnauthenticatedRoute />,
+    children: [
+      {
+        path: "auth/login",
+        element: <Login />
       }
     ]
   }

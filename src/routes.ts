@@ -1,17 +1,18 @@
-import AppHome from "./layout/AppHome";
+import AdminPanel from "./layout/AdminPanel";
+import Login from "./Pages/AdminPanel/Auth/Login";
 
 
 const routes = [
-    { path: "/", exact: true, name: "Home" },
+    { path: "admin", exact: true, name: "Admin" },
     {
-        path: "/login",
+        path: "auth/login",
         name: "Login",
-        component: "No Login",
+        component: Login,
     },
     {
-        path: "/home",
-        name: "Home",
-        component: AppHome,
+        path: "/admin",
+        name: "Admin",
+        component: AdminPanel,
     },
 ];
 

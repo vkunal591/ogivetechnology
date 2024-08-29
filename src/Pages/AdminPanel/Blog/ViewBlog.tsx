@@ -1,6 +1,7 @@
+import React from "react";
 import Pageheader from "../../../Component/Pageheader";
 
-export default function ViewCategory() {
+export default function ViewBlog() {
   const blogList = [
     { title: "Blog 1", createdDate: "25/4/2024", status: true },
     { title: "Blog 2", createdDate: "25/4/2024", status: true },
