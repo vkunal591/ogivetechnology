@@ -1,3 +1,16 @@
+/* Hide scrollbar for Chrome, Safari and Opera */
+.sidebar {
+  height: 74% /* calc(100% -(11.5rem + 1px))!important; */
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.sidebar:hover {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+
+
 @media (min-width: 991.98px) {
   main {
   padding-left: 240px;

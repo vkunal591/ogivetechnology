@@ -5,6 +5,9 @@
   text-align: center;
 }
 
+body{
+  /* overflow-y: hidden; */
+}
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
@@ -13,7 +16,9 @@
   'opsz' 24
 }
 
-
+table td{
+  vertical-align: baseline;
+}
 .row{
   width: 100%!important;
   margin:0px;
