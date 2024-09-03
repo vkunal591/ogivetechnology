@@ -5,6 +5,9 @@
   text-align: center;
 }
 
+body{
+  /* overflow-y: hidden; */
+}
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
@@ -13,7 +16,9 @@
   'opsz' 24
 }
 
-
+table td{
+  vertical-align: baseline;
+}
 .row{
   width: 100%!important;
   margin:0px;
@@ -126,12 +131,12 @@
 }
 
 /* === HEADING STYLE #1 === */
-.head .cs-title-style {
+.cs-title-style {
   text-align: center;
   text-transform: uppercase;
   padding-bottom: 5px;
 }
-.head .cs-title-style :before {
+.cs-title-style :before {
   width: 28px;
   height: 5px;
   display: block;
@@ -142,7 +147,7 @@
   margin-left: -14px;
   background-color: #b80000;
 }
-.head .cs-title-style :after {
+.cs-title-style :after {
   width: 100px;
   height: 1px;
   display: block;
