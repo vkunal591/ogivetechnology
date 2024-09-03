@@ -86,3 +86,156 @@
     font-size: 8px;
   }
 }
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,700&display=swap");
+
+/* CSS Variables */
+:root {
+  --normal-font: 400;
+  --bold-font: 600;
+  --bolder-font: 900;
+  --primary-color: #282828;
+  --secondary-color: #d81f2a;
+  --line-height: 1.7rem;
+  --transition: 0.4s ease-in;
+}
+
+.fist {
+  color: var(--secondary-color);
+}
+
+.jab {
+  color: var(--primary-color);
+}
+
+.tv {
+  color: var(--secondary-color);
+}
+
+.hero{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.9rem;
+  max-width: 1100px;
+  margin: 2rem auto -6rem;
+  margin-top: 0rem;
+  max-height: 550px;
+  font-family: sans-serif;
+}
+.intro-text h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-family: sans-serif;
+
+}
+
+.intro-text h3 {
+  margin-bottom: 0.5rem;
+  font-family: sans-serif;
+
+}
+
+.hero p {
+  line-height: var(--line-height);
+  font-family: sans-serif;
+
+}
+
+.hear {
+  color: var(--primary-color);
+}
+
+.connecting {
+  color: rgb(31, 31, 31);
+  font-size: 18px;
+}
+.btn {
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 0.8rem 0.6rem;
+  border: none;
+  font-size: 1.4rem;
+  border-radius: 5px;
+  color: #fff;
+}
+
+.red {
+  background-color: var(--secondary-color);
+  margin-right: 1.5rem;
+}
+
+.red:hover {
+  background-color: #f1262d;
+  color: #fff;
+}
+
+.blue {
+  background-color: var(--primary-color);
+}
+
+.blue:hover {
+  background-color: #095cf7;
+  color: #fff;
+}
+
+.intro-video {
+  margin-top: 20rem!important;
+  max-width: 30rem;
+  border-top: 40px groove var(--primary-color);
+  border-bottom: 40px groove var(--primary-color);
+  border-right: 28px solid var(--secondary-color);
+  border-left: 28px solid var(--secondary-color);
+}
+
+.stand-1 {
+  height: 90px;
+  width: 6px;
+  background-color: var(--primary-color);
+  transform: rotate(40deg);
+  position: relative;
+  top: -16px;
+  left: 200px;
+}
+.stand-2 {
+  height: 90px;
+  width: 6px;
+  background-color: var(--secondary-color);
+  transform: rotate(-40deg);
+  position: relative;
+  top: -105px;
+  left: 255px;
+}
+.stand-3 {
+  height: 200px;
+  width: 3px;
+  background-color: rgb(115, 115, 115);
+  box-shadow: 2px 2px 2px black;
+  transform: rotate(90deg);
+  position: relative;
+  top: -205px;
+  left: 230px;
+}
+
+.color-effect {
+	/* background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); */
+	/* background: linear-gradient(-45deg, #ffffff, #fff4f9, #ecf6fa, #daf6ef); */
+	background: linear-gradient(-45deg, #ffffff, #606060, #ffffff, #7d4d4d);
+
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+  animation-delay: 5s;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
