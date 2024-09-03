@@ -1,5 +1,8 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from "axios";
+
 const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
+
+
 
 const axiosInstance = axios.create({
     baseURL: apiUrl,
@@ -12,11 +15,12 @@ const axiosInstance = axios.create({
 
 // Add a request interceptor
 axiosInstance.interceptors.request.use(
-    (config) => {
+    (config):AxiosRequestConfig => {
         const token = localStorage.getItem('token');
 
         if (token) {
-            config.headers['Authorization'] = `Bearer ${token}`;
+            const headers = config?.headers || {};
+            headers['Authorization'] = `Bearer ${token}`;
         }
         
         return config;

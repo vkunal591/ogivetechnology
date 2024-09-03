@@ -29,14 +29,14 @@ export default function Header() {
       ></div> */}
       <nav className="navbar fixed-top pt-2 navbar-nav-scroll navbar-expand-lg navbar-light bg-white" style={{borderBottom:"1px solid red"}}>
         <div className="container-fluid">
-          <a className="navbar-brand ml-5 py-0" href="#">
+          <Link className="navbar-brand ml-5 py-0" to="/">
             <img src={logo} className="nav-logo" alt="ogive" />
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
-            // data-bs-target="#navbarSupportedContent"
+            // data-bs-target="navbarSupportedContent"
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
@@ -47,14 +47,7 @@ export default function Header() {
           <div className={`collapse navbar-collapse pt-2 ${show}`}id="">
             <ul className="navbar-nav nav-animation ms-auto justify-content-evenly mb-2 cs-w-60 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/">
-                  {" "}
-                  {/* <img className="d-block m-auto nav-icon" src={iHome} /> */}
-                  HOME
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="software-service">
+                <Link className="nav-link" to="services">
                   {/* <img className="d-block m-auto nav-icon" src={iService} /> */}
                   Services
                 </Link>
@@ -66,40 +59,28 @@ export default function Header() {
                 </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="indoustries">
+                <Link className="nav-link" to="Industries">
                   {/* <img className="d-block m-auto nav-icon" src={iIndustry} /> */}
-                  Indoustries
-                </a>
-              </li>
-              {/* <li className="nav-item">
-                <a className="nav-link" href="#">
-                  <img className="d-block m-auto nav-icon" src={iCgi} />
-                  CGI
-                </a>
+                  Industries
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  <img className="d-block m-auto nav-icon" src={iAr} />
-                  AR
-                </a>
-              </li> */}
-              <li className="nav-item">
-                <a className="nav-link" href="#">
+                <Link className="nav-link" to="about">
                   {/* <img className="d-block m-auto nav-icon" src={iAbout} /> */}
                   ABOUT
-                </a>
+                </Link>
               </li>{" "}
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <Link className="nav-link" to="blog">
                   {/* <img className="d-block m-auto nav-icon" src={iBlog} /> */}
                   BLOG
-                </a>
+                </Link>
               </li>{" "}
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <Link className="nav-link" to="contact-us">
                   {/* <img className="d-block m-auto nav-icon" src={iContact} /> */}
                   CONTACT
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

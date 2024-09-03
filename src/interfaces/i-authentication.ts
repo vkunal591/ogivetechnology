@@ -1,4 +1,4 @@
-import { IUsersResponse } from "./i-user";
+
 
 
 export interface ILoginPayload {
@@ -6,11 +6,11 @@ export interface ILoginPayload {
     password: string;
 }
 
-export interface ILoginResponse {
-    token: string;
-    user: IUsersResponse;
-    childDropDownEnable: boolean;
-}
+// export interface ILoginResponse {
+//     token: string;
+//     user: IUsersResponse;
+//     childDropDownEnable: boolean;
+// }
 
 export interface IErrorMessageResponse {
     message: string;

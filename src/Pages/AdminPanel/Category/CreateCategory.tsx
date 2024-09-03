@@ -1,12 +1,24 @@
-
+import { AxiosError, AxiosResponse } from "axios";
 import Pageheader from "../../../Component/Pageheader";
 import { FieldValues, useForm } from "react-hook-form";
 import CategoryService from "../../../Services/CategoryService";
-import { ICategoryPayload, ICategoryResponse } from "../../../interfaces/i-category";
+import {
+  ICategoryPayload,
+  ICategoryResponse
+} from "../../../interfaces/i-category";
 import { useState, useEffect } from "react";
+import { IErrorMessageResponse } from "../../../interfaces/i-authentication";
+import {
+  successMessage,
+  errorMessage
+} from "../../../utils/fetchResponseMessage";
+import { showToast } from "../../../utils/toast";
+import Toast from "../Admin_Component/Toast";
+import AlertDialog from "../Admin_Component/AlertDialog";
 
 export default function CreateCategory() {
-  const [categoryList, setCategoryList] = useState<ICategoryResponse[]>([])
+  const [categoryList, setCategoryList] = useState<ICategoryResponse[]>([]);
+  const [id, setId] = useState("");
   const { register, handleSubmit, reset } = useForm();
   const createCategory = async (data: FieldValues) => {
     try {
@@ -14,20 +26,30 @@ export default function CreateCategory() {
         title: data?.title,
         desc: data?.description
       };
-      await CategoryService.createCategory(categoryPayload).then((res) => {
-        getCategory()
-        reset();
-        console.log(res);
-      });
+      await CategoryService.createCategory(categoryPayload).then(
+        (res: AxiosResponse) => {
+          getCategory();
+          reset();
+          const message = successMessage(res.data.details.message);
+          showToast({
+            message: message,
+            type: "info"
+          });
+        }
+      );
     } catch (error) {
-      console.log(error);
+      const message = errorMessage(error as AxiosError<IErrorMessageResponse>);
+      showToast({
+        message: message,
+        type: "error"
+      });
     }
   };
 
   const getCategory = async () => {
     try {
       await CategoryService.getCategory().then((res) => {
-        setCategoryList(res.data.details.categories)
+        setCategoryList(res.data.details.categories);
         console.log(res);
       });
     } catch (error) {
@@ -35,9 +57,42 @@ export default function CreateCategory() {
     }
   };
 
+  const deleteCategory = async (id: string) => {
+    try {
+      await CategoryService.deleteCategory(id).then((res: AxiosResponse) => {
+        getCategory();
+        const message = successMessage(res.data.details.message);
+        showToast({
+          message: message,
+          type: "success"
+        });
+      });
+    } catch (error) {
+      const message = errorMessage(error as AxiosError<IErrorMessageResponse>);
+      showToast({
+        message: message,
+        type: "error"
+      });
+    }
+  };
+
+  // Alert component related code
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const handleOpen = (id: string) => {
+    setIsOpen(true);
+    setId(id);
+  };
+  const handleCancel = () => {
+    setIsOpen(false);
+  };
+  const handleOk = () => {
+    deleteCategory(id);
+    setIsOpen(false);
+  };
+
   useEffect(() => {
-    getCategory()
-  }, [])
+    getCategory();
+  }, []);
 
   return (
     <div>
@@ -105,7 +160,7 @@ export default function CreateCategory() {
                   <table className="table table-sm">
                     <thead>
                       <tr>
-                        <th style={{ width: "10px" }}>#</th>
+                        <th style={{ width: "10px" }}></th>
                         <th>Blog Title</th>
                         <th>Created Date</th>
                         {/* <th>Status</th> */}
@@ -130,7 +185,10 @@ export default function CreateCategory() {
                                   <button className="btn btn-outline-primary mr-1">
                                     <i className="fa fa-edit"></i>
                                   </button>
-                                  <button className="btn btn-outline-danger">
+                                  <button
+                                    className="btn btn-outline-danger"
+                                    onClick={() => handleOpen(category?._id)}
+                                  >
                                     <i className="fa fa-trash"></i>
                                   </button>
                                 </div>
@@ -147,7 +205,17 @@ export default function CreateCategory() {
           </div>
         </div>
       </section>
+      <AlertDialog
+        isOpen={isOpen}
+        onCancel={handleCancel}
+        onOk={handleOk}
+        cancelText="No"
+        text={`Are you sure want to delete?`}
+        okText="Yes"
+        heading={"Delete Category"}
+        messageType="error"
+      />
+      <Toast />
     </div>
   );
 }
-

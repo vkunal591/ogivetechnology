@@ -1,13 +1,24 @@
-import "./sidebars.css";
+import "./Css/sidebars.css";
 import logo from "../../../assets/logo-footer.43e2938c.png";
 import person from "../../../assets/nurse.70105458.png";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export default function Sidebar() {
+  const [prevMenuId, setPrevMenuId] = useState("");
+  const openMenu = (id: string) => {
+    const menu = document.getElementById(id);
+    menu?.classList.toggle("menu-open");
+    if (id != prevMenuId) {
+      const prevMenu = document.getElementById(prevMenuId);
+      prevMenu?.classList.remove("menu-open");
+      setPrevMenuId(id);
+    }
+  };
+
   const menuList = [
     {
       name: "Blog",
-      link: "blog",
       icon: "blog",
       submenuId: "submenu1",
       subMenu: [
@@ -21,20 +32,13 @@ export default function Sidebar() {
     },
     {
       name: "Category",
-      link: "category",
       icon: "icons",
       submenuId: "submenu2",
-
       subMenu: [
         {
           name: "Create Category",
           link: "category/createcategory",
           icon: "plus"
-        },
-        {
-          name: "View Category",
-          link: "category/viewcategory",
-          icon: "eye"
         }
       ]
     },
@@ -43,15 +47,12 @@ export default function Sidebar() {
       link: "administration",
       icon: "admin",
       submenuId: "submenu3",
-
       subMenu: []
     },
     {
       name: "Users",
-      link: "users",
       icon: "users",
       submenuId: "submenu4",
-
       subMenu: [
         {
           name: "Create User",
@@ -60,49 +61,42 @@ export default function Sidebar() {
         },
         {
           name: "View User",
-          link: "users/viewuser",
+          link: "users/viewusers",
           icon: "eye"
-        },
-        {
-          name: "Update User",
-          link: "users/updateuser",
-          icon: "edit"
         }
       ]
     },
     {
       name: "Site Setting",
-      link: "site",
       icon: "gear",
       submenuId: "submenu5",
-
       subMenu: [
-   
-     
-        
         {
-          name: "Title Edit",
+          name: "Site Edit",
           link: "site/edit",
           icon: "edit"
-        },  {
-          name: "Theam",
-          link: "site/theam",
+        },
+        {
+          name: "Theame",
+          link: "site/theame",
           icon: "brush"
-        },  {
-          name: "Images ",
-          link: "site/image",
+        },
+        {
+          name: "Media",
+          link: "site/media",
           icon: "image"
+        },
+        {
+          name: "Settings",
+          link: "site/settings",
+          icon: "gear"
         }
-
-
       ]
     }
   ];
   return (
     <>
-      {/* <!-- Main Sidebar Container --> */}
       <aside className="main-sidebar position-fixed sidebar-dark-primary elevation-4">
-        {/* <!-- Brand Logo --> */}
         <Link to="/" className="brand-link">
           <img
             src={logo}
@@ -112,7 +106,6 @@ export default function Sidebar() {
           />
           <span className="brand-text font-weight-light">Technology</span>
         </Link>
-        {/* <!-- Sidebar user (optional) -->/ */}
         <div className="user-panel mt-3 pb-0 mb-3 d-flex">
           <div className="image">
             <img
@@ -122,15 +115,15 @@ export default function Sidebar() {
             />
           </div>
           <div className="info">
-            <Link to="" className="d-block nav-link text-white">
+            <Link
+              to="/admin/viewprofile"
+              className="d-block nav-link text-white"
+            >
               Alexander Pierce
             </Link>
           </div>
         </div>
-
-        {/* <!-- Sidebar --> */}
         <div className="sidebar pl-2 pt-0 cs-mt-8">
-          {/* <!-- Sidebar Menu --> */}
           <nav className="mt-2 text-left">
             <ul
               className="nav nav-pills nav-sidebar flex-column"
@@ -138,20 +131,28 @@ export default function Sidebar() {
               role="menu"
               data-accordion="false"
             >
-              {/* <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library --> */}
-
               {menuList &&
                 menuList?.map((menu, index) => {
                   return (
-                    <li className="nav-item menu-open pt-0" key={index}>
-                      <Link to={""} className={` ${menu?.subMenu.length  ?"nav-link":""}`}>
+                    <li
+                      className="nav-item pt-0"
+                      id={`menu${index}`}
+                      key={index}
+                    >
+                      <a 
+                        className={` ${menu?.subMenu.length ? "nav-link" : ""}`}
+                        onClick={() => openMenu(`menu${index}`)}
+                      >
                         <i className={`nav-icon fas fa-${menu?.icon}`}></i>
-                        <p>
+                        <p >
                           {menu?.name}
-                          <i className={`right fas fa-angle-${menu?.subMenu.length != 0 ?"left":""}`}></i>
+                          <i
+                            className={`right fas fa-angle-${
+                              menu?.subMenu.length != 0 ? "left" : ""
+                            }`}
+                          ></i>
                         </p>
-                      </Link>
+                      </a>
                       <ul className="nav nav-treeview">
                         {menu?.subMenu &&
                           menu?.subMenu.map((submenu, index) => {
@@ -171,8 +172,8 @@ export default function Sidebar() {
                   );
                 })}
 
-              <li className="nav-item">
-                <a href="../widgets.html" className="nav-link">
+              <li className="nav-item d-none">
+                <a className="nav-link">
                   <i className="nav-icon fas fa-th"></i>
                   <p>
                     Widgets

@@ -11,6 +11,7 @@ import iQuantum from "../assets/images/quantum-computing.png";
 import iIR from "../assets/images/virtual-reality-glasses.png";
 import iRobotics from "../assets/images/Robotics.png";
 import ilogo from "../assets/iLogo.png";
+import { Link } from "react-router-dom";
 
 export default function Service() {
   return (
@@ -39,8 +40,8 @@ export default function Service() {
       </div>
       <div className="col-6">
         <div
-          className="card bg-transparent m-auto text-left border-0 text-dark bg-light mb-3"
-          style={{ maxWidth: "100%" }}
+          className="card bg-transparent m-auto text-left border-0 text-dark mb-3"
+          style={{ maxWidth: "100%",boxShadow:"none" }}
         >
           <div className="card-body py-0">
             <h5 className="card-title">
@@ -55,10 +56,10 @@ export default function Service() {
             </p>
           </div>
         </div>
-        <div id="softwareContent" className="section-content">
+        <div id="softwareContent" className="section-content mt-3">
           <div className="container">
             <div className="row justify-content-center service-box">
-              <a className="" href="/projects/software/samsung-software">
+              <Link className="" to={`/service${"?1"}`}>
                 <div className="col border grid-image-box border-3 rounded-3">
                   <img
                     className="grid-image"
@@ -67,8 +68,8 @@ export default function Service() {
                     title="Artificial Intelligence"
                   />
                 </div>
-              </a>
-              <a className="" href="/projects/software/o2-cgi">
+              </Link>
+              <Link className=""  to={`/service${"?2"}`}>
                 <div className="col border grid-image-box border-3 rounded-3">
                   <img
                     className="grid-image"
@@ -77,8 +78,8 @@ export default function Service() {
                     title="Blockchain"
                   />
                 </div>
-              </a>
-              <a className="" href="/projects/software/funko-webgl">
+              </Link>
+              <Link className="" to={`/service${"?3"}`}>
                 <div className="col border grid-image-box border-3 rounded-3">
                   <img
                     className="grid-image"
@@ -87,8 +88,8 @@ export default function Service() {
                     title="Embedded Systems"
                   />
                 </div>
-              </a>
-              <a href="/projects/software/lyle-and-scott-software">
+              </Link>
+              <Link to="/projects/software/lyle-and-scott-software">
                 <div className="col border grid-image-box border-3 rounded-3">
                   <img
                     className="grid-image"
@@ -97,8 +98,8 @@ export default function Service() {
                     title="Cybersecurity"
                   />
                 </div>
-              </a>
-              <a className="" href="/projects/software/reverie-software">
+              </Link>
+              <Link className="" to={`/service${"?4"}`}>
                 <div className="col border grid-image-box border-3 rounded-3">
                   <img
                     className="grid-image"
@@ -107,8 +108,8 @@ export default function Service() {
                     title="Internet Of Things"
                   />
                 </div>
-              </a>
-              <a className="" href="/projects/software/disney-webgl">
+              </Link>
+              <Link className="" to={`/service${"?5"}`}>
                 <div className="col border grid-image-box border-3 rounded-3">
                   <img
                     className="grid-image"
@@ -117,8 +118,8 @@ export default function Service() {
                     title="Digital Twinning"
                   />
                 </div>
-              </a>
-              <a className="" href="/projects/software/vero-software">
+              </Link>
+              <Link className="" to={`/service${"?6"}`}>
                 <div className="col border grid-image-box border-3 rounded-3">
                   <img
                     className="grid-image"
@@ -127,8 +128,8 @@ export default function Service() {
                     title="Robotics"
                   />
                 </div>
-              </a>
-              <a className="" href="/projects/software/boohooman-software">
+              </Link>
+              <Link className="" to={`/service${"?7"}`}>
                 <div className="col border grid-image-box border-3 rounded-3">
                   <img
                     className="grid-image"
@@ -137,10 +138,10 @@ export default function Service() {
                     title="Quantum Computing"
                   />
                 </div>
-              </a>
-              <a
+              </Link>
+              <Link
                 className=""
-                href="/projects/software/highland-titles-software"
+                to={`/service${"?8"}`}
               >
                 <div className="col border grid-image-box border-3 rounded-3">
                   <img
@@ -150,8 +151,8 @@ export default function Service() {
                     title="Cloud Computing"
                   />
                 </div>
-              </a>
-              <a className="" href="/projects/software/cw-systems-software">
+              </Link>
+              <Link className="" to={`/service${"?9"}`}>
                 <div className="col border grid-image-box border-3 rounded-3">
                   <img
                     className="grid-image"
@@ -160,7 +161,7 @@ export default function Service() {
                     title="Immersive Reality"
                   />
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

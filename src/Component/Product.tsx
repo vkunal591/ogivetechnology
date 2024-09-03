@@ -8,6 +8,7 @@ import iSugam from "../assets/computer.png";
 import iEklavya from "../assets/fire.57d8fcb6.png";
 import ilogo from "../assets/iLogo.png";
 import iSwayam from "../assets/robot.02e39f5f.png";
+import { Link } from "react-router-dom";
 
 export default function Product() {
   return (
@@ -28,9 +29,9 @@ export default function Product() {
         <div id="softwareContent" className="section-content">
           <div className="container  mobile-product-container">
             <div className="row items">
-              <a
+              <Link
                 className="nav-link text-secondary"
-                href="/projects/software/samsung-software"
+                to={`/product${"?1"}`}
               >
                 <div className="col border item item1 product-grid-image-box border-3 rounded-3">
                   <div>
@@ -50,10 +51,10 @@ export default function Product() {
                     </p>
                   </div>
                 </div>
-              </a>
-              <a
+              </Link>
+              <Link
                 className="nav-link text-secondary"
-                href="/projects/software/o2-cgi"
+                to={`/product${"?2"}`}
               >
                 <div className="col item item2 border product-grid-image-box border-3 rounded-3">
                   <div>
@@ -74,10 +75,10 @@ export default function Product() {
                     </p>
                   </div>
                 </div>
-              </a>
-              <a
+              </Link>
+              <Link
                 className="nav-link text-secondary"
-                href="/projects/software/funko-webgl"
+                to={`/product${"?3"}`}
               >
                 <div className="col item item3 border product-grid-image-box border-3 rounded-3">
                   <div>
@@ -97,10 +98,10 @@ export default function Product() {
                     </p>
                   </div>
                 </div>
-              </a>
-              <a
+              </Link>
+              <Link
                 className="nav-link text-secondary"
-                href="/projects/software/lyle-and-scott-software"
+                to={`/product${"?4"}`}
               >
                 <div className="col  item item4 border product-grid-image-box border-3 rounded-3">
                   <div>
@@ -120,10 +121,10 @@ export default function Product() {
                     </p>
                   </div>
                 </div>
-              </a>
-              <a
+              </Link>
+              <Link
                 className="nav-link text-secondary"
-                href="/projects/software/reverie-software"
+                to={`/product${"?5"}`}
               >
                 <div className="col item item5 border product-grid-image-box border-3 rounded-3">
                   <div>
@@ -144,10 +145,10 @@ export default function Product() {
                     </p>
                   </div>
                 </div>
-              </a>
-              <a
+              </Link>
+              <Link
                 className="nav-link text-secondary"
-                href="/projects/software/disney-webgl"
+                to={`/product${"?6"}`}
               >
                 <div className="col item item6 border product-grid-image-box border-3 rounded-3">
                   <div>
@@ -166,10 +167,10 @@ export default function Product() {
                     </p>
                   </div>
                 </div>
-              </a>
-              <a
+              </Link>
+              <Link
                 className="nav-link text-secondary"
-                href="/projects/software/vero-software"
+                to={`/product${"?7"}`}
               >
                 <div className="col item item7 border product-grid-image-box border-3 rounded-3">
                   <div>
@@ -189,10 +190,10 @@ export default function Product() {
                     </p>
                   </div>
                 </div>
-              </a>
-              <a
+              </Link>
+              <Link
                 className="nav-link text-secondary"
-                href="/projects/software/boohooman-software"
+                to={`/product${"?8"}`}
               >
                 <div className="col item item8 border product-grid-image-box border-3 rounded-3">
                   <div>
@@ -211,7 +212,7 @@ export default function Product() {
                     </p>
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
