@@ -15,32 +15,32 @@ import {
 import { showToast } from "../../../utils/toast";
 import Toast from "../Admin_Component/Toast";
 import JoditEditor from "jodit-react";
+import FileService from "../../../Services/FileService";
 
 export default function UpdateBlog() {
   const [blogData, setBlogData] = useState<IBlogResponse>();
   const [id, setid] = useState("");
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, resetField, reset } = useForm();
   const [categoryDropdownList, setCategoryDropdownList] = useState<
     ICategoryResponse[]
   >([]);
+  const [imageName, setImageName] = useState("Choose File");
+  const [imageUrl, setimageUrl] = useState("");
   const editor = useRef(null);
-	const [content, setContent] = useState('');
+  const [content, setContent] = useState("");
 
-	const config = useMemo(()=>
-		{ const data = {
-		 readonly: false, // all options from https://xdsoft.net/jodit/docs/,
+  const config = useMemo(() => {
+    const data = {
+      readonly: false, // all options from https://xdsoft.net/jodit/docs/,
 
-			placeholder:'Start typings...'
-        }
-        return data;
-		},
-		[]
-	);
+      placeholder: ""
+    };
+    return data;
+  }, []);
   const getCategory = async () => {
     try {
       await CategoryService.getCategory().then((res: AxiosResponse) => {
         setCategoryDropdownList(res.data.details.categories);
-       
       });
     } catch (error) {
       const message = errorMessage(error as AxiosError<IErrorMessageResponse>);
@@ -56,7 +56,9 @@ export default function UpdateBlog() {
       await BlogService.getBlog(id).then((res) => {
         const data = res.data.details.post;
         setBlogData(res.data.details.post);
-      setContent(data?.desc)
+        setContent(data?.desc);
+        setimageUrl(data?.file);
+        setImageName(data?.file.split("images/")[1]);
         reset({
           title: data?.title,
           description: data?.desc,
@@ -73,21 +75,46 @@ export default function UpdateBlog() {
     }
   };
 
+  const uploadFile = async (event: { target: { files: File[] } }) => {
+    try {
+      const file = event.target.files[0];
+      const formData = new FormData();
+      formData.append("file", file);
+      await FileService.uploadDocument(formData).then((res: AxiosResponse) => {
+        setImageName(res.data.filename);
+        setimageUrl(res.data.url);
+        const message = successMessage(res);
+        showToast({ message: message, type: "success" });
+        resetField("file");
+      });
+    } catch (error) {
+      console.error("Upload Failed");
+      const message = errorMessage(error as AxiosError<IErrorMessageResponse>);
+      resetField("file");
+      setImageName("Choose File");
+      showToast({
+        message: message,
+        type: "error"
+      });
+    }
+  };
   const updateBlog = async (data: FieldValues) => {
     try {
       const updatePayload: ICreateBlog = {
         title: data?.title,
-        desc: data?.description,
+        desc: content,
         category: data.category,
-        file: data?.image
+        file: imageUrl
       };
       await BlogService.updateBlog(id, updatePayload).then((res) => {
         const message = successMessage(res.data.details.message);
+        getBlog(window.location.href.split("?")[1]);
+
         showToast({
           message: message,
           type: "info"
         });
-        reset();
+        // reset();
       });
     } catch (error) {
       const message = errorMessage(error as AxiosError<IErrorMessageResponse>);
@@ -141,26 +168,28 @@ export default function UpdateBlog() {
                                   </option>
                                 );
                               })}
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
                           </select>
                         </div>
                       </div>
                       <div className="col-6">
                         <div className="form-group">
                           <label htmlFor="exampleInputFile">Image</label>
-                          <select
-                            className="form-select"
-                            aria-label="Default select example"
-                            {...register("image")}
-                          >
-                            <option selected>Select Category</option>
-                            <option value="649285ecc4a35ff00f1c1479">
-                              One
-                            </option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                          </select>
+                          <div className="d-flex">
+                            <label htmlFor="upload" className="form-control">
+                              {imageName}
+                            </label>
+                            <input
+                              id={`upload`}
+                              className="form-control col-6"
+                              type="file"
+                              {...register(`file`, {
+                                onChange: async (e) => {
+                                  uploadFile(e);
+                                }
+                              })}
+                              hidden
+                            />
+                          </div>
                         </div>
                       </div>
                       <div className="mb-3">
@@ -185,9 +214,10 @@ export default function UpdateBlog() {
                           value={content}
                           config={config}
                           // tabIndex={1} // tabIndex of textarea
-                        	onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-                        	onChange={newContent => {console.log(newContent)}}
-                    
+                          onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
+                          onChange={(newContent) => {
+                            console.log(newContent);
+                          }}
                         />
                       </div>
                     </div>

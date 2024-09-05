@@ -84,7 +84,10 @@ export default function BlogPage() {
                   <thead>
                     <tr>
                       <th style={{ width: "10px" }}></th>
+                      <th>Blog Thumbnel</th>
                       <th>Blog Title</th>
+                      <th>Category</th>
+                      <th>Created By.</th>
                       <th>Created Date</th>
                       <th>Status</th>
                       <th style={{ width: "40px" }}>Actions</th>
@@ -96,7 +99,12 @@ export default function BlogPage() {
                         return (
                           <tr>
                             <td>{index + 1 + "."}</td>
+                            <td>
+                              <img src={blog?.file} alt="" width={50} height={40} />
+                            </td>
                             <td>{blog?.title}</td>
+                            <td>{blog?.category?.title}</td>
+                            <td>{blog?.updatedBy?.name}</td>
                             <td>{blog?.createdAt}</td>
                             <td>
                               <span className="badge bg-success">

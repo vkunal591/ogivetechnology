@@ -193,6 +193,8 @@ export default function ViewProfile() {
                     type="text"
                     className="form-control mt-2 mb-2"
                     placeholder="Verification Cde"
+                    {...register('code')}
+                    required
                   />
                   <button
                     className="btn btn-outline-success"

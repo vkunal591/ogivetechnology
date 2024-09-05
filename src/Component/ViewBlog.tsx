@@ -1,58 +1,64 @@
-import { useEffect, useState } from "react";
-import iRakshak from "../assets/p-4.e51ae303.png";
-import iSangrah from "../assets/p-6.6f097e91.png";
-import iTruck from "../assets/p-3.26f01dd2.png";
-import iPehchan from "../assets/p-2.cbbb8164.png";
-import iGarud from "../assets/p-1.79519766.png";
-import iSugam from "../assets/p-7.8c99d4bb.png";
-import iEklavya from "../assets/p-5.8714d8a1.png";
-import iSwayam from "../assets/p-8.6c562d80.png";
-import productsData from "../../ProductData.json";
+// import { useEffect, useState } from "react";
+// import iRakshak from "../assets/p-4.e51ae303.png";
+// import iSangrah from "../assets/p-6.6f097e91.png";
+// import iTruck from "../assets/p-3.26f01dd2.png";
+// import iPehchan from "../assets/p-2.cbbb8164.png";
+// import iGarud from "../assets/p-1.79519766.png";
+// import iSugam from "../assets/p-7.8c99d4bb.png";
+// import iEklavya from "../assets/p-5.8714d8a1.png";
+// import iSwayam from "../assets/p-8.6c562d80.png";
+// import productsData from "../../ProductData.json";
 import { Link } from "react-router-dom";
+import { IBlogResponse } from "../interfaces/i-blog";
 interface IBlog {
   title: string;
   desc: string;
   img?: string;
 }
 
-export default function ViewBlog() {
-  const [blogData, setBlogData] = useState<IBlog[]>([]);
-  const location = window.location.href.split("/");
-  const category = location[3]?.split("?")[0];
-  const id = (Number(location[3]?.split("?")[1]) - 1) | 0;
+export default function ViewBlog(blogData:{blogData:IBlogResponse}) {
+  // const [blogData, setBlogData] = useState<IBlog[]>([]);
+  // const location = window.location.href.split("/");
+  // const category = location[3]?.split("?")[0];
+  // const id = (Number(location[3]?.split("?")[1]) - 1) | 0;
 
-  const img = [
-    iRakshak,
-    iSangrah,
-    iTruck,
-    iPehchan,
-    iGarud,
-    iSugam,
-    iEklavya,
-    iSwayam
-  ];
+  // const img = [
+  //   iRakshak,
+  //   iSangrah,
+  //   iTruck,
+  //   iPehchan,
+  //   iGarud,
+  //   iSugam,
+  //   iEklavya,
+  //   iSwayam
+  // ];
+console.log(blogData)
+  const element: HTMLElement | null = document.getElementById("content");
+  if (element)
+    element.innerHTML = JSON.parse(
+      JSON.stringify(blogData && blogData.blogData?.desc)
+    );
+  // useEffect(() => {
+  //   if (category === "product") setBlogData([productsData?.Products[id]]);
+  //   if (category === "service") setBlogData([productsData?.Services[id]]);
+  //   if (category === "industry") setBlogData([productsData?.Industries[id]]);
+  //   if (category === "product") console.log([productsData?.Products[id]]);
+  //   if (category === "service") console.log([productsData?.Services[id]]);
+  //   if (category === "industry") console.log([productsData?.Industries[id]]);
+  //   console.log(id)
 
-  useEffect(() => {
-    if (category === "product") setBlogData([productsData?.Products[id]]);
-    if (category === "service") setBlogData([productsData?.Services[id]]);
-    if (category === "industry") setBlogData([productsData?.Industries[id]]);
-    if (category === "product") console.log([productsData?.Products[id]]);
-    if (category === "service") console.log([productsData?.Services[id]]);
-    if (category === "industry") console.log([productsData?.Industries[id]]);
-    console.log(id)
-
-    const element: HTMLElement | null = document.getElementById("content");
-    if (element)
-      element.innerHTML = JSON.parse(
-        JSON.stringify(productsData?.Products[id]?.desc)
-      );
+    // const element: HTMLElement | null = document.getElementById("content");
+    // if (element)
+    //   element.innerHTML = JSON.parse(
+    //     JSON.stringify(productsData?.Products[id]?.desc)
+    //   );
     // }
-  }, []);
+  // }, []);
 
   return (
     <main className="container text-left">
       <div className="p-0 p-md-0 mb-4 rounded-3 overflow-hidden text-body-emphasis bg-secondary">
-        <img src={img[id]} style={{ width: "100%" }} alt="" />
+        <img src={blogData && blogData?.blogData.file} style={{ width: "100%",maxHeight:"500px" }}  alt="" />
         <div className="col-lg-6 px-0">
           {/* <h1 className="display-4 fst-italic">
             Title of a longer featured blog post
@@ -73,7 +79,7 @@ export default function ViewBlog() {
       <div className="row g-5">
         <div className="col-md-8">
           <h2 className="display-5 link-body-emphasis mb-1">
-            {blogData && blogData[0]?.title}
+            {blogData && blogData?.blogData.title}
           </h2>
           <p className="blog-post-meta">
             January 1, 2021 by <a href="">Mark</a>
@@ -81,6 +87,7 @@ export default function ViewBlog() {
 
           <article id="content" className="blog-post">
             <hr />
+            {blogData?.desc}
           </article>
         </div>
 

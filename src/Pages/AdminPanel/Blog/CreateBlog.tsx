@@ -14,12 +14,15 @@ import {
 } from "../../../utils/fetchResponseMessage";
 import { IErrorMessageResponse } from "../../../interfaces/i-authentication";
 import JoditEditor from "jodit-react";
+import FileService from "../../../Services/FileService";
 
 export default function CreateBlog() {
   const [categoryDropdownList, setCategoryDropdownList] = useState<
     ICategoryResponse[]
   >([]);
-  const { register, handleSubmit, reset } = useForm();
+  const [imageName, setImageName] = useState("Choose File");
+  const [imageUrl, setimageUrl] = useState("");
+  const { register, handleSubmit, reset, resetField } = useForm();
   const editor = useRef(null);
   const [content, setContent] = useState("");
 
@@ -45,13 +48,37 @@ export default function CreateBlog() {
     }
   };
 
+  const uploadFile = async (event: { target: { files: File[] } }) => {
+    try {
+      const file = event.target.files[0];
+      const formData = new FormData();
+      formData.append("file", file);
+      await FileService.uploadDocument(formData).then((res: AxiosResponse) => {
+        setImageName(res.data.filename);
+        setimageUrl(res.data.url);
+        const message = successMessage(res);
+        showToast({ message: message, type: "success" });
+        resetField("file");
+      });
+    } catch (error) {
+      console.error("Upload Failed");
+      const message = errorMessage(error as AxiosError<IErrorMessageResponse>);
+      resetField("file");
+      setImageName("Choose File");
+      showToast({
+        message: message,
+        type: "error"
+      });
+    }
+  };
+
   const createBlog = async (data: FieldValues) => {
     try {
       const blogPayload: ICreateBlog = {
         title: data?.title,
         desc: content,
         category: data.category,
-        file: data?.image
+        file: imageUrl
       };
       await BlogService.createBlog(blogPayload).then((res) => {
         const message = successMessage(res.data.details.message);
@@ -60,6 +87,7 @@ export default function CreateBlog() {
           type: "info"
         });
         reset();
+        setContent('')
       });
     } catch (error) {
       const message = errorMessage(error as AxiosError<IErrorMessageResponse>);
@@ -110,26 +138,28 @@ export default function CreateBlog() {
                                   </option>
                                 );
                               })}
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
                           </select>
                         </div>
                       </div>
                       <div className="col-6">
                         <div className="form-group">
                           <label htmlFor="exampleInputFile">Image</label>
-                          <select
-                            className="form-select"
-                            aria-label="Default select example"
-                            {...register("image")}
-                          >
-                            <option selected>Select Category</option>
-                            <option value="649285ecc4a35ff00f1c1479">
-                              One
-                            </option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                          </select>
+                          <div className="d-flex">
+                            <label htmlFor="upload" className="form-control">
+                              {imageName}
+                            </label>
+                            <input
+                              id={`upload`}
+                              className="form-control col-6"
+                              type="file"
+                              {...register(`file`, {
+                                onChange: async (e) => {
+                                  uploadFile(e);
+                                }
+                              })}
+                              hidden
+                            />
+                          </div>
                         </div>
                       </div>
                       <div className="mb-3">
@@ -149,20 +179,15 @@ export default function CreateBlog() {
                         <label htmlFor="content" className="form-label">
                           Description
                         </label>
-                        {/* <textarea
-                          className="form-control"
-                          id="content"
-                          rows={5}
-                          {...register("description")}
-                        ></textarea> */}
                         <JoditEditor
                           ref={editor}
                           value={content}
                           config={config}
                           // tabIndex={1} // tabIndex of textarea
-                        	onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-                        	onChange={newContent => {console.log(newContent)}}
-                    
+                          onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
+                          onChange={(newContent) => {
+                            console.log(newContent);
+                          }}
                         />
                       </div>
                     </div>

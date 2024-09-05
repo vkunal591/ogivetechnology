@@ -2,7 +2,7 @@
 export interface ICreateBlog {
     title: string;
     desc: string;
-    file: File;
+    file: string;
     category: string;
 }
 

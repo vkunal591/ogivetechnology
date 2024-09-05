@@ -1,4 +1,5 @@
 export interface IBlogResponse {
+    file: string | undefined;
     _id: string;
     title: string;
     desc: string;
@@ -30,4 +31,12 @@ export interface IUpdatedBy {
     createdAt: string;
     updatedAt: string;
     __v: 0
+}
+
+export interface IBlogPayload {
+    id:string,
+    size: string;
+    page: string;
+    q: string;
+    categoryId: string
 }
