@@ -63,36 +63,41 @@ export default function Sidebar() {
           name: "View User",
           link: "users/viewusers",
           icon: "eye"
+        },
+        {
+          name: "My Profile",
+          link: "users/viewProfile",
+          icon: "user"
         }
       ]
     },
-    {
-      name: "Site Setting",
-      icon: "gear",
-      submenuId: "submenu5",
-      subMenu: [
-        {
-          name: "Site Edit",
-          link: "site/edit",
-          icon: "edit"
-        },
-        {
-          name: "Theame",
-          link: "site/theame",
-          icon: "brush"
-        },
-        {
-          name: "Media",
-          link: "site/media",
-          icon: "image"
-        },
-        {
-          name: "Settings",
-          link: "site/settings",
-          icon: "gear"
-        }
-      ]
-    }
+    // {
+    //   name: "Site Setting",
+    //   icon: "gear",
+    //   submenuId: "submenu5",
+    //   subMenu: [
+    //     {
+    //       name: "Site Edit",
+    //       link: "site/edit",
+    //       icon: "edit"
+    //     },
+    //     {
+    //       name: "Theame",
+    //       link: "site/theame",
+    //       icon: "brush"
+    //     },
+    //     {
+    //       name: "Media",
+    //       link: "site/media",
+    //       icon: "image"
+    //     },
+    //     {
+    //       name: "Settings",
+    //       link: "site/settings",
+    //       icon: "gear"
+    //     }
+    //   ]
+    // }
   ];
   return (
     <>

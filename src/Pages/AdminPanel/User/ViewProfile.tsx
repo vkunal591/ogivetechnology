@@ -1,7 +1,7 @@
 import { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import { IErrorMessageResponse } from "../../../interfaces/i-authentication";
-import AuthServices from "../../../Services/AuthServices";
+
 import {
   errorMessage,
   successMessage
@@ -15,6 +15,7 @@ import {
 import { FieldValues, useForm } from "react-hook-form";
 import Pageheader from "../../../Component/Pageheader";
 import Toast from "../Admin_Component/Toast";
+import AuthServices from "../../../Services/AuthServices";
 
 export default function ViewProfile() {
   const [profileInformation, setprofileInformation] = useState<IUserResponse>();
@@ -179,7 +180,7 @@ export default function ViewProfile() {
                 }`}
               >
                 <button
-                  className={`btn btn-outline-success mx-auto mt-3 ${
+                  className={`btn btn-primary mr-1 m-0 p-2 px-3 fs-6 mx-auto mt-3 ${
                     isEmailSended ? "d-none" : ""
                   }`}
                   type="submit"
@@ -197,7 +198,7 @@ export default function ViewProfile() {
                     required
                   />
                   <button
-                    className="btn btn-outline-success"
+                   className="btn btn-primary mr-1 m-0 p-2 px-3 fs-6"
                     type="submit"
                     id="button-addon2"
                   >
@@ -237,95 +238,9 @@ export default function ViewProfile() {
                     />
                   </div>
                 </div>
-                {/* <div className="row mt-3">
-    <div className="col-md-12">
-      <label className="labels">Mobile Number</label>
-      <input
-        type="text"
-        className="form-control"
-        placeholder="enter phone number"
-        value=""
-      />
-    </div>
-    <div className="col-md-12">
-      <label className="labels">Address Line 1</label>
-      <input
-        type="text"
-        className="form-control"
-        placeholder="enter address line 1"
-        value=""
-      />
-    </div>
-    <div className="col-md-12">
-      <label className="labels">Address Line 2</label>
-      <input
-        type="text"
-        className="form-control"
-        placeholder="enter address line 2"
-        value=""
-      />
-    </div>
-    <div className="col-md-12">
-      <label className="labels">Postcode</label>
-      <input
-        type="text"
-        className="form-control"
-        placeholder="enter address line 2"
-        value=""
-      />
-    </div>
-    <div className="col-md-12">
-      <label className="labels">State</label>
-      <input
-        type="text"
-        className="form-control"
-        placeholder="enter address line 2"
-        value=""
-      />
-    </div>
-    <div className="col-md-12">
-      <label className="labels">Area</label>
-      <input
-        type="text"
-        className="form-control"
-        placeholder="enter address line 2"
-        value=""
-      />
-    </div>
-    <div className="col-md-12">
-      <label className="labels">Email ID</label>
-      <input
-        type="text"
-        className="form-control"
-        placeholder="enter email id"
-        value=""
-      />
-    </div>
-    
-  </div> */}
-                {/* <div className="row mt-3">
-    <div className="col-md-6">
-      <label className="labels">Country</label>
-      <input
-        type="text"
-        className="form-control"
-        placeholder="country"
-        value=""
-      />
-    </div>
-    <div className="col-md-6">
-      <label className="labels">State/Region</label>
-      <input
-        type="text"
-        className="form-control"
-        value=""
-        placeholder="state"
-      />
-    </div>
-  </div> */}
                 <div className="mt-5 text-center">
                   <button
-                    className="btn btn-primary profile-button"
+                    className="btn btn-primary profile-button p-2 px-3 fs-6 m-0"
                     type="submit"
                   >
                     Save Profile
@@ -368,7 +283,7 @@ export default function ViewProfile() {
                 </div>{" "}
                 <div className="mt-5 text-center">
                   <button
-                    className="btn btn-primary profile-button"
+                    className="btn btn-primary profile-button p-2 px-3 fs-6 m-0"
                     type="submit"
                   >
                     Change Password

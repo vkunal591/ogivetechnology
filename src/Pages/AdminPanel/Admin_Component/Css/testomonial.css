@@ -11,10 +11,10 @@ figure.snip1390 {
   min-height: 475px;
   max-height: 500px;
   height: 100%;
-  color: #000000;
+  color: var(--cs-primaryHeading);
   text-align: center;
   font-size: 16px;
-  background-color: #353535;
+  background-color: var(--cs-secondaryBg);
   padding: 30px;
   background-image: linear-gradient(
     -25deg,
@@ -32,7 +32,7 @@ figure.snip1390 {
   max-width: 130px;
   min-width: 110px;
   width: 100%;
-  background-color: #8d3636;
+  background-color: var(--theamColor);
 }
 .bg-box-style:before {
   content: "";
@@ -45,7 +45,7 @@ figure.snip1390 {
   max-width: 130px;
   min-width: 110px;
   width: 100%;
-  background-color: #d81f2a;
+  background-color: var(--theamColor);
 }
 figure.snip1390 *,
 figure.snip1390 *:before,
@@ -85,7 +85,7 @@ blockquote h1:before {
   left: 29%;
   top: 20%;
   margin-left: -14px;
-  background-color: #b80000;
+  background-color: var(--theamColor);
 }
 
 
@@ -167,5 +167,5 @@ top: -150%;
 } */
 
 .slick-slider button::before {
-  color: rgba(57, 57, 57, 0.59);
+  color: var(--cs-primaryHeading);
 }

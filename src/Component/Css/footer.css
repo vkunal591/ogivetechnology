@@ -4,14 +4,14 @@ ul {
 }
 .footer-section {
   border-top: 1px solid #c5c5c5;
-  background: #ffffff;
+  background: var(--cs-secondaryHeading)fff;
   position: relative;
 }
 .footer-cta {
   border-bottom: 1px solid #373636;
 }
 .single-cta i {
-  color: #d81f2a;
+  color: var(--theamColor);
   font-size: 30px;
   float: left;
   margin-top: 8px;
@@ -53,11 +53,11 @@ ul {
 .footer-text p {
   margin-bottom: 14px;
   font-size: 14px;
-  color: #222222;
+  color: var(--cs-primaryHeading);
   line-height: 28px;
 }
 .footer-social-icon span {
-  color: #fff;
+  color: var(--cs-secondaryHeading);
   display: block;
   font-size: 20px;
   font-weight: 700;
@@ -65,7 +65,7 @@ ul {
   margin-bottom: 20px;
 }
 .footer-social-icon a {
-  color: #fff;
+  color: var(--cs-secondaryHeading);
   font-size: 16px;
   margin-right: 15px;
 }
@@ -99,7 +99,7 @@ ul {
   bottom: -15px;
   height: 2px;
   width: 50px;
-  background: #d81f2a;
+  background: var(--theamColor);
 }
 .footer-widget ul li {
   display: block;
@@ -109,7 +109,7 @@ ul {
   margin-bottom: 12px;
 }
 .footer-widget ul li a:hover {
-  color: #d81f2a;
+  color: var(--theamColor);
 }
 .footer-widget ul li a {
   color: #2c2c2c;
@@ -122,34 +122,34 @@ ul {
 .subscribe-form input {
   width: 100%;
   padding: 14px 28px;
-  background: #e6e6e6;
+  background: var(--cs-primary);
   border: 1px solid #b0b0b0;
-  color: #fff;
+  color: var(--cs-secondaryHeading);
 }
 .subscribe-form button {
   position: absolute;
   right: 0;
-  background: #d81f2a;
+  background: var(--theamColor);
   padding: 13px 20px;
-  border: 1px solid #d81f2a;
+  border: 1px solid var(--theamColor);
   top: 0;
 }
 .subscribe-form button i {
-  color: #fff;
+  color: var(--cs-secondaryHeading);
   font-size: 22px;
   transform: rotate(-6deg);
 }
 .copyright-area {
-  background: #d81f2a;
+  background: var(--theamColor);
   padding: 10px 0;
 }
 .copyright-text p {
   margin: 0;
   font-size: 14px;
-  color: #ffffff;
+  color: var(--cs-secondaryHeading)fff;
 }
 .copyright-text p a {
-  color: #d81f2a;
+  color: var(--theamColor);
 }
 .footer-menu li {
   display: inline-block;
@@ -160,5 +160,5 @@ ul {
 }
 .footer-menu li a {
   font-size: 14px;
-  color: #ffffff;
+  color: var(--cs-secondaryHeading)fff;
 }

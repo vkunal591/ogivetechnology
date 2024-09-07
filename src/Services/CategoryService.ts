@@ -6,11 +6,25 @@ import { ICategoryPayload } from "../interfaces/i-category";
 
 export default {
 
-  createCategory: function (payload: ICategoryPayload) {
-    return axiosInstance.post(url.categoryUrl, payload);
+  createCategory: function (id: string, payload: ICategoryPayload) {
+    if (id) {
+      return axiosInstance.put(`${url.categoryUrl}/${id}`, payload);
+
+    } else {
+
+      return axiosInstance.post(`${url.categoryUrl}`, payload);
+    }
   },
-  getCategory: function () {
-    return axiosInstance.get(url.categoryUrl);
+  getCategory: function (id: string, size: number | null, page: number | null) {
+    if (!id) {
+      return axiosInstance.get(`${url.categoryUrl}`)
+
+    } else {
+
+      return axiosInstance.get(`${url.categoryUrl}/${id}`, {
+        params: { size, page }
+      });
+    }
   },
   getCategoryByTitleSizePage: function (payload: { title: string, size: number, page: number }) {
     return axiosInstance.post(url.categoryUrl, payload);

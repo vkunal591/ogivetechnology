@@ -1,81 +1,107 @@
 import ilogo from "../../../assets/iLogo.png";
-
+import { AxiosError, AxiosResponse } from "axios";
 import styled, { keyframes, css } from "styled-components";
+import { IBlogResponse } from "../../../interfaces/i-blog";
+import { useState, useEffect } from "react";
+import { IErrorMessageResponse } from "../../../interfaces/i-authentication";
+import BlogService from "../../../Services/BlogService";
+import { errorMessage } from "../../../utils/fetchResponseMessage";
+import { showToast } from "../../../utils/toast";
 
 export default function ClientSection() {
-  const row1 = [
-    "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
-    "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
-    "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
-    "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
-    "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
-    "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
-    // "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/b2bd91d7b87b2181ca45.png",
-    // "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/6591cdc0702b32310306.png",
-    // "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/3b7d9f4b073deb6a9b74.png",
-    // "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/3cd767dea94a85078ca4.png",
-    // "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/a2b3c3709ffedce2a22a.png",
-  ];
+  // const row1 = [
+  //   "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
+  //   "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
+  //   "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
+  //   "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
+  //   "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
+  //   "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png"
+  // ];
 
-  const row2 = [
-    "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
-    "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
-    "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
-    "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
-    "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
-    "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
-  //   "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/6c585c33ca6c71c79bb7.png",
-  //   "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/9dd55e54b5a28658bf4e.png",
-  //   "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/0384060dcbf73b6a707c.png",
-  //   "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/35e044b3354aaa0caed5.png",
-  //   "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/f50ae7cbf6cc805bdadc.png",
-  //   "https://assets.algoexpert.io/spas/main/prod/g523bdeb478-prod/dist/images/6c585c33ca6c71c79bb7.png",
-  ];
+  // const row2 = [
+  //   "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
+  //   "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
+  //   "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
+  //   "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
+  //   "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
+  //   "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png"
+  // ];
 
+  const [clientData, setClientData] = useState<IBlogResponse[]>();
+  const getBlog = async (
+    id: string,
+    size: string,
+    page: string,
+    q: string,
+    categoryId: string
+  ) => {
+    try {
+      await BlogService.getLocalBlog(id, size, page, q, categoryId).then(
+        (res: AxiosResponse) => {
+          setClientData(res.data.details.posts);
+          console.log(res.data.details.posts);
+        }
+      );
+    } catch (error) {
+      const message = errorMessage(error as AxiosError<IErrorMessageResponse>);
+      showToast({
+        message: message,
+        type: "error"
+      });
+    }
+  };
+
+  useEffect(() => {
+    // const location = window.location.href.split("/");
+    // const id = location[3].split("?")[1];
+    // // const category = location[3].split("?")[0];
+    // console.log(location[3].split("?")[1]);
+    const categoryId = "66d9f227361fdc43a8b73864";
+    getBlog("", "", "", "", categoryId);
+  }, []);
   return (
     <AppContainer>
       <Wrapper>
-      <h5 className="card-header cs-title-style  bg-transparent border-0 mb-5 mt-3">
-        <span>
-          <img
-            className="mx-1"
-            src={ilogo}
-            alt=""
-            width={8}
-            style={{ rotate: "0deg" }}
-          />
-        </span>
-        With Great Outcomes
-      </h5>
-        {/* <Note>Our customers have gotten offers from awesome companies.</Note> */}
+        <h5 className="card-header cs-title-style  bg-transparent border-0 mb-5 mt-3">
+          <span>
+            <img
+              className="mx-1"
+              src={ilogo}
+              alt=""
+              width={8}
+              style={{ rotate: "0deg" }}
+            />
+          </span>
+          With Great Outcomes
+        </h5>
         <Marquee>
           <MarqueeGroup>
-            {row1.map((el) => (
+            {clientData?.map((el) => (
               <ImageGroup>
-                <Image src={el} />
+                <Image src={el?.file} />
               </ImageGroup>
             ))}
           </MarqueeGroup>
           <MarqueeGroup>
-            {row1.map((el) => (
+            {clientData?.map((el) => (
               <ImageGroup>
-                <Image src={el} />
+                <Image src={el?.file} />
               </ImageGroup>
             ))}
           </MarqueeGroup>
         </Marquee>
         <Marquee>
           <MarqueeGroup2>
-            {row2.map((el) => (
+            {clientData?.map((el) => (
               <ImageGroup>
-                <Image src={el} />
+                <Image src={el?.file} />
               </ImageGroup>
             ))}
           </MarqueeGroup2>
           <MarqueeGroup2>
-            {row2.map((el) => (
+            {clientData?.map((el) => (
               <ImageGroup>
-                <Image src={el} />
+                <Image src={el?.file} />
               </ImageGroup>
             ))}
           </MarqueeGroup2>
@@ -105,20 +131,6 @@ const Wrapper = styled.div`
   justify-content: center;
   flex-direction: column;
 `;
-
-// const Text = styled.div`
-//   font-size: 35px;
-//   font-weight: 500;
-//   margin-bottom: 10px;
-//   color: #02203c;
-// `;
-
-// const Note = styled.div`
-//   font-size: 18px;
-//   font-weight: 200;
-//   margin-bottom: 40px;
-//   color: #7c8e9a;
-// `;
 
 const Marquee = styled.div`
   display: flex;

@@ -1,7 +1,47 @@
+import { AxiosError, AxiosResponse } from "axios";
 import "./Css/blog.css";
 import ilogo from "./../assets/iLogo.png";
+import { FieldValues, useForm } from "react-hook-form";
+import { IErrorMessageResponse } from "../interfaces/i-authentication";
+import { IContactForm } from "../interfaces/i-form";
+import FormService from "../Services/FormService";
+import { successMessage, errorMessage } from "../utils/fetchResponseMessage";
+import { showToast } from "../utils/toast";
+import Toast from "../Pages/AdminPanel/Admin_Component/Toast";
 
 export default function ContactUs() {
+  const { register, handleSubmit, reset } = useForm();
+
+  const createContact = async (data: FieldValues) => {
+    try {
+      const contactPayload: IContactForm = {
+        name: data?.name,
+        email: data?.email,
+        phone: data?.phone,
+        subject: data?.subject,
+        desc: data?.desc,
+        _id: "",
+        createdAt: ""
+      };
+      await FormService.createContact(contactPayload).then(
+        (res: AxiosResponse) => {
+          const message = successMessage(res.data.details.message);
+          showToast({
+            message: message,
+            type: "success"
+          });
+          reset();
+        }
+      );
+    } catch (error) {
+      const message = errorMessage(error as AxiosError<IErrorMessageResponse>);
+      showToast({
+        message: message,
+        type: "error"
+      });
+    }
+  };
+
   return (
     <section className="py-3 py-md-5 py-xl-8 text-left cs-mt-1 mb-5">
       <div className="container">
@@ -35,7 +75,7 @@ export default function ContactUs() {
             <div className="card border border-dark rounded shadow-sm overflow-hidden">
               <div className="card-body p-0">
                 <div className="row gy-3 gy-md-4 gy-lg-0">
-                  <div className="col-12 col-lg-6 bsb-overlay background-position-center background-size-cover bg-secondary">
+                  <div className="col-12 col-lg-6 bsb-overlay background-position-center background-size-cover bg-black">
                     <div className="row align-items-lg-center justify-content-center h-100">
                       <div className="col-11 col-xl-10">
                         <div className="contact-info-wrapper py-4 py-xl-5">
@@ -179,7 +219,7 @@ export default function ContactUs() {
                         NEED HELP
                       </h5>
                       <div className="col-12 mt-2">
-                        <form action="">
+                        <form onSubmit={handleSubmit(createContact)}>
                           <div className="row gy-4 gy-xl-5 py-1 px-4 p-xl-">
                             <div className="col-12 mt-2">
                               <label
@@ -192,8 +232,7 @@ export default function ContactUs() {
                                 type="text"
                                 className="form-control"
                                 id="fullname"
-                                name="fullname"
-                                value=""
+                                {...register("name")}
                                 required
                               />
                             </div>
@@ -221,8 +260,7 @@ export default function ContactUs() {
                                   type="email"
                                   className="form-control"
                                   id="email"
-                                  name="email"
-                                  value=""
+                                  {...register("email")}
                                   required
                                 />
                               </div>
@@ -251,8 +289,7 @@ export default function ContactUs() {
                                   type="tel"
                                   className="form-control"
                                   id="phone"
-                                  name="phone"
-                                  value=""
+                                  {...register("phone")}
                                 />
                               </div>
                             </div>
@@ -267,8 +304,7 @@ export default function ContactUs() {
                                 type="text"
                                 className="form-control"
                                 id="subject"
-                                name="subject"
-                                value=""
+                                {...register("subject")}
                                 required
                               />
                             </div>
@@ -282,7 +318,7 @@ export default function ContactUs() {
                               <textarea
                                 className="form-control"
                                 id="message"
-                                name="message"
+                                {...register("desc")}
                                 rows={3}
                                 required
                               ></textarea>
@@ -308,6 +344,7 @@ export default function ContactUs() {
           </div>
         </div>
       </div>
+      <Toast />
     </section>
   );
 }

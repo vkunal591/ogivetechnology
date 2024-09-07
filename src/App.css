@@ -1,32 +1,67 @@
+/* ----------------------------------------------------------------------------------------- */
+/* Dynamic Css Start */
 #root {
   max-width: 100%;
   margin-top: 0 auto;
   padding: 0;
   text-align: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  --cs-primaryBg: #ffffff;
+  --cs-secondaryBg: #989898;
+  --cs-primaryText: #bbbbbb;
+  --cs-primaryHeading: #1b1b1b;
+  --cs-secondaryText: rgb(79, 79, 79);
+  --cs-secondaryHeading: white;
+  --theamColor: #d81f2a;
+  --transparent:#00000000;
+}
+.cs-primaryBg {
+  background-color: var(--cs-primaryBg) !important;
+}
+.cs-secondaryBg {
+  background-color: var(--cs-secondaryBg) !important;
+}
+.cs-primaryHeading {
+  color: var(--cs-primaryHeading) !important;
+}
+.cs-primaryText {
+  color: var(--cs-primaryText) !important;
 }
 
-body{
-  /* overflow-y: hidden; */
+.cs-secondaryHeading {
+  color: var(--cs-secondaryHeading) !important;
 }
+.cs-secondaryText {
+  color: var(--cs-secondaryText) !important;
+}
+
+.cs-theamBackground {
+  background-color: var(--primary) !important;
+}
+
+.cs-theamColor {
+  color: var(--primary) !important;
+}
+
+/* Dynamic Css End */
+/* -------------------------------------------------------------------------- */
+
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
 }
 
-table td{
+table td {
   vertical-align: baseline;
 }
-.row{
-  width: 100%!important;
-  margin:0px;
+.row {
+  width: 100% !important;
+  margin: 0px;
 }
 
 .thm-env-color {
-  background-color: #d81f2a !important;
-  color: white !important;
+  background-color: var(--primary) !important;
+  color: var(--secondaryText) !important;
 }
 
 .thm-color {
@@ -166,7 +201,6 @@ table td{
 }
 /* Nav Bar End */
 
-
 /* Product Component start */
 .product-grid-image-box {
   display: flex;
@@ -187,20 +221,6 @@ table td{
 }
 
 /* Product Component End */
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
 
 /* Tablate or Laptop */
 /* @media (min-width: 768px) and (max-width: 992px){...} */

@@ -24,6 +24,9 @@ export const deleteFileByKey = `${baseUrl}/api/v1/file/delete-file`;
 
 
 export const uploadImageUrl = `${baseUrl}/api/v1/local/upload`;
+export const careerUrl = `${baseUrl}/api/v1/career`;
+export const contactUrl = `${baseUrl}/api/v1/contact`;
+
 
 
 

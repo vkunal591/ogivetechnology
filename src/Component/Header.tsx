@@ -22,12 +22,8 @@ export default function Header() {
     }
   }
   return (
-    <header className="theme-dark bg-white">
-      {/* <div
-        className="row border border-1 border-black thm-env-color fixed-top"
-        style={{ height: "10px" }}
-      ></div> */}
-      <nav className="navbar fixed-top pt-2 navbar-nav-scroll navbar-expand-lg navbar-light bg-white" style={{borderBottom:"1px solid red"}}>
+    <header className="theme-dark cs-primaryBg">
+      <nav className="navbar fixed-top pt-2 navbar-nav-scroll navbar-expand-lg navbar-light bg-white cs-primaryBg" style={{borderBottom:"1px solid red"}}>
         <div className="container-fluid">
           <Link className="navbar-brand ml-5 py-0" to="/">
             <img src={logo} className="nav-logo" alt="ogive" />
@@ -47,42 +43,49 @@ export default function Header() {
           <div className={`collapse navbar-collapse pt-2 ${show}`}id="">
             <ul className="navbar-nav nav-animation ms-auto justify-content-evenly mb-2 cs-w-60 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link" to="services">
+                <Link className="nav-link cs-primaryText" to="services?66d743de2bf7a8226072911c">
                   {/* <img className="d-block m-auto nav-icon" src={iService} /> */}
                   Services
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="products">
+                <Link className="nav-link cs-primaryText" to="products?66d743bd2bf7a82260729116">
                   {/* <img className="d-block m-auto nav-icon" src={iProducts} /> */}
                   Products
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="Industries">
+                <Link className="nav-link cs-primaryText" to="Industries?66d7447c2bf7a82260729122">
                   {/* <img className="d-block m-auto nav-icon" src={iIndustry} /> */}
                   Industries
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="about">
+                <Link className="nav-link cs-primaryText" to="about">
                   {/* <img className="d-block m-auto nav-icon" src={iAbout} /> */}
                   ABOUT
                 </Link>
               </li>{" "}
               <li className="nav-item">
-                <Link className="nav-link" to="blog">
+                <Link className="nav-link cs-primaryText" to="blog">
                   {/* <img className="d-block m-auto nav-icon" src={iBlog} /> */}
                   BLOG
                 </Link>
               </li>{" "}
               <li className="nav-item">
-                <Link className="nav-link" to="contact-us">
+                <Link className="nav-link cs-primaryText" to="careers">
                   {/* <img className="d-block m-auto nav-icon" src={iContact} /> */}
-                  CONTACT
+                  CAREER
                 </Link>
               </li>
             </ul>
+         
+                <Link className="nav-lin btn btn-danger mt-0 fs-6 px-3 border-0 rounded-0 shadow-lg" to="contact-us">
+                  {/* <img className="d-block m-auto nav-icon" src={iContact} /> */}
+                  TALK WITH US
+                </Link>
+     
+          
           </div>
         </div>
         <div className="border border-top-0 border-left-0 border-right-0 border-2 border-danger"></div>

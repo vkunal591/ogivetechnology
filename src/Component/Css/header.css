@@ -6,8 +6,8 @@
  
   /* font: bold 1.5rem sans-serif; */
   text-transform: uppercase;
-  color: grey;
-  filter: drop-shadow(0.5px 0.5px 0px #ffffff);
+  color: var(--primartyText);
+  filter: drop-shadow(0.5px 0.5px 0px var(--cs-secondaryText));
 }
 .nav-animation li {
   padding: 0 0.5em 0.25em;
@@ -17,13 +17,13 @@
   transition: 0.3s;
 }
 .nav-animation li:hover {
-  color: #fff;
+  color: var(--cs-secondaryText);
 }
 .nav-animation li:before {
   content: "";
   position: absolute;
   inset: calc(100% - 3px) 0 0 0; /* 3px = the thickness */
-  background: #d81f2a; /* the color */
+  background: var(--theamColor); /* the color */
   scale: 0 1;
   transition: 0.3s, translate 0s 0.3s;
 }
@@ -44,12 +44,12 @@
 }
 
 .nav-icon {
-  filter: drop-shadow(1px 1px 0px #ffffff);
+  filter: drop-shadow(1px 1px 0px var(--cs-secondaryText));
 }
 
 .nav-item:hover {
   .nav-icon {
-    filter: drop-shadow(0.5px 0.5px 0px #d81f2a);
+    filter: drop-shadow(0.5px 0.5px 0px var(--theamColor));
   }
 }
 

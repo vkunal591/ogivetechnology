@@ -136,7 +136,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="copyright-area">
+      <div className="copyright-area" id="down">
         <div className="container">
           <div className="row">
             <div className="col-12 col-xl-12 col-lg-12 mt-1 text-center text-lg-left">

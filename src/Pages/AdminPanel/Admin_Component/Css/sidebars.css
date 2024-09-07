@@ -9,7 +9,15 @@
   scrollbar-width: none;  /* Firefox */
 }
 
+.hideScrollBar{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
 
+.hideScrollBar:hover {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
 
 @media (min-width: 991.98px) {
   main {

@@ -25,7 +25,9 @@ export default function UpdateBlog() {
     ICategoryResponse[]
   >([]);
   const [imageName, setImageName] = useState("Choose File");
+  const [iconName, setIconName] = useState("Choose File");
   const [imageUrl, setimageUrl] = useState("");
+  const [iconUrl, seticonUrl] = useState("");
   const editor = useRef(null);
   const [content, setContent] = useState("");
 
@@ -39,7 +41,7 @@ export default function UpdateBlog() {
   }, []);
   const getCategory = async () => {
     try {
-      await CategoryService.getCategory().then((res: AxiosResponse) => {
+      await CategoryService.getCategory("",null,null).then((res: AxiosResponse) => {
         setCategoryDropdownList(res.data.details.categories);
       });
     } catch (error) {
@@ -53,17 +55,21 @@ export default function UpdateBlog() {
 
   const getBlog = async (id: string) => {
     try {
-      await BlogService.getBlog(id).then((res) => {
+      await BlogService.getBlog(id,null,null).then((res) => {
         const data = res.data.details.post;
         setBlogData(res.data.details.post);
         setContent(data?.desc);
         setimageUrl(data?.file);
         setImageName(data?.file.split("images/")[1]);
+        setIconName(data?.icon.split("images/")[1]);
+        seticonUrl(data?.icon);
         reset({
           title: data?.title,
           description: data?.desc,
           category: data?.category._id,
-          image: data?.file
+          image: data?.file,
+          icon: data?.icon,
+          shortDesc: data?.shortDesc
         });
       });
     } catch (error) {
@@ -75,22 +81,38 @@ export default function UpdateBlog() {
     }
   };
 
-  const uploadFile = async (event: { target: { files: File[] } }) => {
+  const uploadFile = async (event: {
+    target: { files: File[]; name: string };
+  }) => {
+    const name = event.target.name;
     try {
       const file = event.target.files[0];
       const formData = new FormData();
       formData.append("file", file);
       await FileService.uploadDocument(formData).then((res: AxiosResponse) => {
-        setImageName(res.data.filename);
-        setimageUrl(res.data.url);
+        if (name === "icon") {
+          setIconName(res.data.filename);
+          seticonUrl(res.data.url);
+          resetField("icon");
+        } else {
+          setImageName(res.data.filename);
+          setimageUrl(res.data.url);
+          resetField("file");
+        }
         const message = successMessage(res);
         showToast({ message: message, type: "success" });
-        resetField("file");
+   
       });
     } catch (error) {
       console.error("Upload Failed");
       const message = errorMessage(error as AxiosError<IErrorMessageResponse>);
-      resetField("file");
+      if (name === "icon") {
+        setImageName("Choose File");
+        resetField("file");
+      } else {
+        setIconName("Choose File");
+        resetField("icon");
+      };
       setImageName("Choose File");
       showToast({
         message: message,
@@ -104,15 +126,16 @@ export default function UpdateBlog() {
         title: data?.title,
         desc: content,
         category: data.category,
-        file: imageUrl
+        file: imageUrl,
+        shortDesc: data?.shortDesc,
+        icon: iconUrl
       };
       await BlogService.updateBlog(id, updatePayload).then((res) => {
         const message = successMessage(res.data.details.message);
         getBlog(window.location.href.split("?")[1]);
-
         showToast({
           message: message,
-          type: "info"
+          type: "success"
         });
         // reset();
       });
@@ -135,7 +158,7 @@ export default function UpdateBlog() {
     <div>
       {/* <!-- Content Header (Page header) --> */}
 
-      <Pageheader Title="Create Blog" />
+      <Pageheader Title="Update Blog" />
       <section className="content">
         <div className="container-fluid">
           <div className="row">
@@ -171,11 +194,32 @@ export default function UpdateBlog() {
                           </select>
                         </div>
                       </div>
-                      <div className="col-6">
-                        <div className="form-group">
+                      <div className="col-6 d-flex">
+                      <div className="form-group col-6 p-0 mr-1">
+                          <label htmlFor="exampleInputFile">Icon</label>
+                          <div className="">
+                            <label htmlFor="upload1" className="form-control overflow-hidden w-100">
+                              {iconName}
+                            </label>
+
+                            <input
+                              id={`upload1`}
+                              className="form-control col-6"
+                              
+                              type="file"
+                              {...register(`icon`, {
+                                onChange: async (e) => {
+                                  uploadFile(e);
+                                }
+                              })}
+                              hidden
+                            />
+                          </div>
+                        </div>
+                        <div className="form-group col-6 p-0">
                           <label htmlFor="exampleInputFile">Image</label>
                           <div className="d-flex">
-                            <label htmlFor="upload" className="form-control">
+                            <label htmlFor="upload" className="form-control overflow-hidden" >
                               {imageName}
                             </label>
                             <input
@@ -204,7 +248,16 @@ export default function UpdateBlog() {
                           {...register("title")}
                         />
                       </div>
-
+                      <div className="mb-3">
+                        <label htmlFor="title" className="form-label">
+                          Short Description
+                        </label>
+                        <textarea
+                          className="form-control"
+                          {...register("shortDesc")}
+                          rows={4}
+                        ></textarea>
+                      </div>
                       <div className="mb-3">
                         <label htmlFor="content" className="form-label">
                           Description
@@ -224,7 +277,7 @@ export default function UpdateBlog() {
                     {/* <!-- /.card-body --> */}
 
                     <div className="card-footer text-center">
-                      <button type="submit" className="btn btn-primary">
+                      <button type="submit" className="btn btn-primary p-0 m-0 ">
                         Update
                       </button>
                     </div>

@@ -21,7 +21,9 @@ export default function CreateBlog() {
     ICategoryResponse[]
   >([]);
   const [imageName, setImageName] = useState("Choose File");
+  const [iconName, setIconName] = useState("Choose File");
   const [imageUrl, setimageUrl] = useState("");
+  const [iconUrl, seticonUrl] = useState("");
   const { register, handleSubmit, reset, resetField } = useForm();
   const editor = useRef(null);
   const [content, setContent] = useState("");
@@ -36,7 +38,7 @@ export default function CreateBlog() {
   }, []);
   const getCategory = async () => {
     try {
-      await CategoryService.getCategory().then((res: AxiosResponse) => {
+      await CategoryService.getCategory("",null,null).then((res: AxiosResponse) => {
         setCategoryDropdownList(res.data.details.categories);
       });
     } catch (error) {
@@ -48,23 +50,37 @@ export default function CreateBlog() {
     }
   };
 
-  const uploadFile = async (event: { target: { files: File[] } }) => {
+  const uploadFile = async (event: {
+    target: { files: File[]; name: string };
+  }) => {
+    const name = event.target.name;
     try {
       const file = event.target.files[0];
       const formData = new FormData();
       formData.append("file", file);
       await FileService.uploadDocument(formData).then((res: AxiosResponse) => {
-        setImageName(res.data.filename);
-        setimageUrl(res.data.url);
+        if (name === "icon") {
+          setIconName(res.data.filename);
+          seticonUrl(res.data.url);
+          resetField("icon");
+        } else {
+          setImageName(res.data.filename);
+          setimageUrl(res.data.url);
+          resetField("file");
+        }
         const message = successMessage(res);
         showToast({ message: message, type: "success" });
-        resetField("file");
       });
     } catch (error) {
       console.error("Upload Failed");
       const message = errorMessage(error as AxiosError<IErrorMessageResponse>);
-      resetField("file");
-      setImageName("Choose File");
+      if (name === "icon") {
+        setImageName("Choose File");
+        resetField("file");
+      } else {
+        setIconName("Choose File");
+        resetField("icon");
+      }
       showToast({
         message: message,
         type: "error"
@@ -76,18 +92,22 @@ export default function CreateBlog() {
     try {
       const blogPayload: ICreateBlog = {
         title: data?.title,
+        shortDesc: data?.shortDesc,
         desc: content,
         category: data.category,
+        icon: iconUrl,
         file: imageUrl
       };
       await BlogService.createBlog(blogPayload).then((res) => {
-        const message = successMessage(res.data.details.message);
+        const message = successMessage(res.data.message);
         showToast({
           message: message,
-          type: "info"
+          type: "success"
         });
         reset();
-        setContent('')
+        setContent("");
+        setIconName("");
+        setImageName("");
       });
     } catch (error) {
       const message = errorMessage(error as AxiosError<IErrorMessageResponse>);
@@ -120,7 +140,7 @@ export default function CreateBlog() {
                   <div className="card-body text-left">
                     <div className="row">
                       <div className="col-6">
-                        <div className="mb-3">
+                        <div className="form-group mb-3">
                           <label htmlFor="title" className="form-label">
                             Category
                           </label>
@@ -141,15 +161,36 @@ export default function CreateBlog() {
                           </select>
                         </div>
                       </div>
-                      <div className="col-6">
-                        <div className="form-group">
+                      <div className="col-6 d-flex">
+                        <div className="form-group col-6 p-0 mr-1">
+                          <label htmlFor="exampleInputFile">Icon</label>
+                          <div className="">
+                            <label htmlFor="upload1" className="form-control">
+                              {iconName}
+                            </label>
+
+                            <input
+                              id={`upload1`}
+                              className="form-control col-6"
+                              type="file"
+                              {...register(`icon`, {
+                                onChange: async (e) => {
+                                  uploadFile(e);
+                                }
+                              })}
+                              hidden
+                            />
+                          </div>
+                        </div>
+                        <div className="form-group col-6 p-0">
                           <label htmlFor="exampleInputFile">Image</label>
-                          <div className="d-flex">
-                            <label htmlFor="upload" className="form-control">
+                          <div className="">
+                            <label htmlFor="upload2" className="form-control">
                               {imageName}
                             </label>
+
                             <input
-                              id={`upload`}
+                              id={`upload2`}
                               className="form-control col-6"
                               type="file"
                               {...register(`file`, {
@@ -174,6 +215,16 @@ export default function CreateBlog() {
                           {...register("title")}
                         />
                       </div>
+                      <div className="mb-3">
+                        <label htmlFor="title" className="form-label">
+                          Short Description
+                        </label>
+                        <textarea
+                          className="form-control"
+                          {...register("shortDesc")}
+                          rows={4}
+                        ></textarea>
+                      </div>
 
                       <div className="mb-3">
                         <label htmlFor="content" className="form-label">
@@ -194,7 +245,10 @@ export default function CreateBlog() {
                     {/* <!-- /.card-body --> */}
 
                     <div className="card-footer text-center">
-                      <button type="submit" className="btn btn-primary">
+                      <button
+                        type="submit"
+                        className="btn btn-primary m-0 p-1 px-3 fs-6"
+                      >
                         Post
                       </button>
                     </div>

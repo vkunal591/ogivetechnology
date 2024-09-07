@@ -21,7 +21,7 @@
 }
 
 .grid-image:hover {
-  filter: drop-shadow(2px 2px 2px #d81f2a);
+  filter: drop-shadow(2px 2px 2px var(--theamColor));
 }
 
 /* Service Component End */
@@ -91,7 +91,7 @@
     bottom: -5px;
     left: -5px;
     border: inherit;
-    border-color: transparent;
+    border-color: var(--transparent);
     background: inherit;
   }
 }

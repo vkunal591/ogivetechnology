@@ -4,8 +4,9 @@ import {
   createBrowserRouter,
   RouterProvider
 } from "react-router-dom";
+import logo from "./assets/ogive logo.png";
 import "./App.css";
-import AnimatedCursor from "react-animated-cursor"
+import AnimatedCursor from "react-animated-cursor";
 import Product from "./Component/Product";
 import Service from "./Component/Service";
 import AppHome from "./layout/AppHome";
@@ -25,7 +26,14 @@ import ViewUsers from "./Pages/AdminPanel/User/ViewUsers";
 import ViewProfile from "./Pages/AdminPanel/User/ViewProfile";
 import Blog from "./Pages/Blog";
 import ContactUs from "./Component/ContactUs";
-import Testomonial from "./Pages/AdminPanel/Admin_Component/Testomonial";
+import Faq from "./Component/Faq";
+import AboutUs from "./Component/AboutUs";
+import Career from "./Component/Career";
+import Why from "./Component/Why";
+import Gallery from "./Component/Gallery";
+import Industries from "./Component/Industries";
+import ViewCareers from "./Pages/AdminPanel/User/ViewCareers";
+import ViewConatacts from "./Pages/AdminPanel/User/ViewContacts";
 
 // Helper function to check authentication
 const isAuthenticated = () => {
@@ -72,7 +80,7 @@ const router = createBrowserRouter([
           },
           {
             path: "industries",
-            element: <Product />
+            element: <Industries />
           },
           {
             path: "industry",
@@ -84,11 +92,31 @@ const router = createBrowserRouter([
           },
           {
             path: "about",
-            element: <Testomonial />
+            element: <AboutUs />
           },
           {
             path: "contact-us",
             element: <ContactUs />
+          },
+          {
+            path: "careers",
+            element: <Career />
+          },
+          {
+            path: "career",
+            element: <Blog />
+          },
+          {
+            path: "faq",
+            element: <Faq />
+          },
+          {
+            path: "why",
+            element: <Why />
+          },
+          {
+            path: "gallery",
+            element: <Gallery />
           }
         ]
       }
@@ -103,7 +131,12 @@ const router = createBrowserRouter([
         path: "/admin",
         element: <AdminPanel />,
         children: [
-          { path: "", element: "Admin Control" },
+          {
+            path: "",
+            element: (
+              <img loading="lazy" className="m-3 p-3 cs-w-70" src={logo} />
+            )
+          },
           {
             path: "blog/createblog",
             element: <CreateBlog />
@@ -129,7 +162,7 @@ const router = createBrowserRouter([
             element: <ViewUsers />
           },
           {
-            path: "viewProfile",
+            path: "users/viewProfile",
             element: <ViewProfile />
           },
           {
@@ -147,7 +180,9 @@ const router = createBrowserRouter([
           {
             path: "site/settings",
             element: <TheamSetting />
-          }
+          },
+          { path: "viewcareers", element: <ViewCareers /> },
+          { path: "viewcontacts", element: <ViewConatacts /> }
         ]
       }
     ],
@@ -168,38 +203,37 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-    <AnimatedCursor 
-    innerSize={7}
-    outerSize={50}
-    color='gray'
-    outerAlpha={1}
-    innerScale={1.1}
-    outerScale={1.5}
-    showSystemCursor={true}
-    trailingSpeed={10}
-    outerStyle={{
-      border: '2px solid gray',
-      backgroundColor:"transparent"
-    }}
-    innerStyle={{
-      backgroundColor: 'gray',
-      color:"gray"
-    }}
-  
-    clickables={[
-      'a',
-      'input[type="text"]',
-      'input[type="email"]',
-      'input[type="number"]',
-      'input[type="submit"]',
-      'input[type="image"]',
-      'label[for]',
-      'select',
-      'textarea',
-      'button',
-      '.link'
-    ]}
-    />
+      <AnimatedCursor
+        innerSize={7}
+        outerSize={50}
+        color="gray"
+        outerAlpha={1}
+        innerScale={1.1}
+        outerScale={1.5}
+        showSystemCursor={true}
+        trailingSpeed={10}
+        outerStyle={{
+          border: "2px solid gray",
+          backgroundColor: "transparent"
+        }}
+        innerStyle={{
+          backgroundColor: "gray",
+          color: "gray"
+        }}
+        clickables={[
+          "a",
+          'input[type="text"]',
+          'input[type="email"]',
+          'input[type="number"]',
+          'input[type="submit"]',
+          'input[type="image"]',
+          "label[for]",
+          "select",
+          "textarea",
+          "button",
+          ".link"
+        ]}
+      />
       <RouterProvider router={router} />
     </>
   );

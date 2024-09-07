@@ -12,21 +12,33 @@ import {
 import { showToast } from "../../../utils/toast";
 import Toast from "../Admin_Component/Toast";
 import AlertDialog from "../Admin_Component/AlertDialog";
+import PaginationComponent from "../../../modals/Pagination";
+import TableRowsLoader from "../../../modals/TableRowsLoader";
 
 export default function BlogPage() {
+  const [isLoading, setIsLoading] = useState(false)
   const [blogList, setBlogList] = useState<IBlogResponse[]>([]);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(10);
+  const [currentpage, setCurrentpage] = useState(1);
+  const [totalPage, setTotalPage] = useState<number | null>(null);
   const [id, setId] = useState("");
   const getBlog = async (id: string) => {
     try {
-      await BlogService.getBlog(id).then((res: AxiosResponse) => {
-        setBlogList(res.data.details.posts);
-      });
+      setIsLoading(true)
+      await BlogService.getBlog(id, rowsPerPage, currentpage).then(
+        (res: AxiosResponse) => {
+          setBlogList(res.data.details.posts);
+          setTotalPage(res.data.details.pages);
+        }
+      );
     } catch (error) {
       const message = errorMessage(error as AxiosError<IErrorMessageResponse>);
       showToast({
         message: message,
         type: "error"
       });
+    }finally{
+      setIsLoading(false)
     }
   };
 
@@ -62,10 +74,25 @@ export default function BlogPage() {
     deleteBlog(id);
     setIsOpen(false);
   };
+  // pagination
+
+  const handleChangePage = (
+    _event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number
+  ) => {
+    setCurrentpage(newPage + 1); // +1 because newPage is zero-based
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setCurrentpage(1); // Reset to page 1 when rows per page change
+  };
 
   useEffect(() => {
     getBlog("");
-  }, []);
+  }, [currentpage, rowsPerPage]);
 
   return (
     <div>
@@ -75,15 +102,15 @@ export default function BlogPage() {
         <div className="container-fluid">
           <div className="row">
             <div className="card">
-              <div className="card-header">
-                <h3 className="card-title">View Blog</h3>
-              </div>
-              {/* <!-- /.card-header --> */}
-              <div className="card-body p-0">
-                <table className="table table-sm">
+    
+              <div className="card-header bg-white">
+                  <h3 className="card-title">All Blogs List</h3>
+                </div>
+              <div className="card-body table-responsive p-0">
+                <table className="table table-head-fixed text-nowrap text-center table-striped table-valign-middle">
                   <thead>
                     <tr>
-                      <th style={{ width: "10px" }}></th>
+                      <th >S. No.</th>
                       <th>Blog Thumbnel</th>
                       <th>Blog Title</th>
                       <th>Category</th>
@@ -94,13 +121,23 @@ export default function BlogPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {blogList &&
+                    {isLoading ? (
+                    <TableRowsLoader rowsNum={5} cellsNum={8} />
+                  ) : blogList.length === 0 ? (
+                    <tr>No Data Found</tr>
+                  ) : (
                       blogList?.map((blog, index) => {
                         return (
                           <tr>
                             <td>{index + 1 + "."}</td>
                             <td>
-                              <img src={blog?.file} alt="" width={50} height={40} />
+                              <img
+                                loading="lazy"
+                                src={blog?.file}
+                                alt=""
+                                width={50}
+                                height={40}
+                              />
                             </td>
                             <td>{blog?.title}</td>
                             <td>{blog?.category?.title}</td>
@@ -117,23 +154,30 @@ export default function BlogPage() {
                                   to={`/admin/blog/updateblog${
                                     "?" + blog?._id
                                   }`}
-                                  className="btn btn-outline-primary mr-1"
+                                  className="btn btn-primary mx-1 m-0 p-0"
                                 >
-                                  <i className="fa fa-edit"></i>
+                                  <i className="fa fa-edit mx-0"></i>
                                 </Link>
                                 <button
-                                  className="btn btn-outline-danger"
+                                  className="btn btn-danger m-0 p-0"
                                   onClick={() => handleOpen(blog?._id)}
                                 >
-                                  <i className="fa fa-trash"></i>
+                                  <i className="fa fa-trash mx-0"></i>
                                 </button>
                               </div>
                             </td>
                           </tr>
                         );
-                      })}
+                      }))}
                   </tbody>
                 </table>
+                <PaginationComponent
+                  count={totalPage && (totalPage* rowsPerPage)|| 0} // Total number of records
+                  page={currentpage-1} // -1 because PaginationComponent is zero-based
+                  rowsPerPage={rowsPerPage}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                />
               </div>
               {/* <!-- /.card-body --> */}
             </div>

@@ -1,7 +1,6 @@
 import { AxiosError, AxiosResponse } from "axios";
 import { FieldValues, useForm } from "react-hook-form";
 import logo from "../../../assets/ogive logo.png";
-import AuthServices from "../../../Services/AuthServices";
 import {
   IErrorMessageResponse,
   ILoginPayload
@@ -10,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { errorMessage } from "../../../utils/fetchResponseMessage";
 import { showToast } from "../../../utils/toast";
 import Toast from "../Admin_Component/Toast";
+import AuthServices from "../../../Services/AuthServices";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -77,7 +77,7 @@ export default function Login() {
                     </div>
                   </div>
                 </div>
-                <div className="input-group mb-3">
+                <div className="input-group mb-3 ">
                   <input
                     type="password"
                     className="form-control"
@@ -90,9 +90,9 @@ export default function Login() {
                     </div>
                   </div>
                 </div>
-                <div className="row ">
-                  <div className="col-4 text-center">
-                    <button type="submit" className="btn btn-primary btn-block">
+                <div className="row text-center ">
+                  <div className="col-4 text-center w-100 ">
+                    <button type="submit" className="btn btn-primary inline-block btn-block w-50 mx-auto p-2 px-3 fs-6">
                       Log In
                     </button>
                   </div>

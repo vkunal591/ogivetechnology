@@ -1,13 +1,13 @@
 import "./Css/product.css";
 import { AxiosError, AxiosResponse } from "axios";
-// import iSangrah from "../assets/sangrah.a9945f49.png";
-// import iTruck from "../assets/trucl.png";
-// import iPehchan from "../assets/pehchan.png";
-// import iGarud from "../assets/eagle.20e49177.png";
-// import iSugam from "../assets/computer.png";
-// import iEklavya from "../assets/fire.57d8fcb6.png";
+import iSangrah from "../assets/sangrah.a9945f49.png";
+import iTruck from "../assets/trucl.png";
+import iPehchan from "../assets/pehchan.png";
+import iGarud from "../assets/eagle.20e49177.png";
+import iSugam from "../assets/computer.png";
+import iEklavya from "../assets/fire.57d8fcb6.png";
 import ilogo from "../assets/iLogo.png";
-// import iSwayam from "../assets/robot.02e39f5f.png";
+import iSwayam from "../assets/robot.02e39f5f.png";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { IErrorMessageResponse } from "../interfaces/i-authentication";
@@ -16,8 +16,8 @@ import BlogService from "../Services/BlogService";
 import { errorMessage } from "../utils/fetchResponseMessage";
 import { showToast } from "../utils/toast";
 
-export default function Product() {
-  const [productData, setProductData] = useState<IBlogResponse[]>();
+export default function Industries() {
+  const [industriesData, setIndustriesData] = useState<IBlogResponse[]>();
   const getBlog = async (
     id: string,
     size: string,
@@ -28,7 +28,7 @@ export default function Product() {
     try {
       await BlogService.getLocalBlog(id, size, page, q, categoryId).then(
         (res: AxiosResponse) => {
-          setProductData(res.data.details.posts);
+          setIndustriesData(res.data.details.posts);
           console.log(res.data.details.posts);
         }
       );
@@ -61,52 +61,52 @@ export default function Product() {
             style={{ rotate: "0deg" }}
           />
         </span>
-        PRODUCTS
+        Industries
       </h5>
       <p className="text-secondary mb-5 text-center lead fs-4">
-        ogive Product Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Reiciendis repellendus, sint nesciunt sapiente rem earum optio eaque
-        animi quas, molestias quibusdam. Laboriosam magni nemo pariatur quae quo
-        rerum consequuntur doloribus.
+        ogive industry Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Sapiente ut, qui, amet dolor placeat soluta nulla fugit error nam vel
+        tempore, repellendus beatae. Officiis, eveniet? Amet facilis aut quam
+        vel.
       </p>
       <hr className="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle" />
       <div className="col">
         <div id="softwareContent" className="section-content">
           <div className="container  mobile-product-container">
             <div className="row items">
-              {productData &&
-                productData?.map((product, index) => {
+              {industriesData &&
+                industriesData?.map((industry, index) => {
                   return (
                     <Link
                       className="nav-link text-secondary"
-                      to={`/product${`?${product?._id}`}`}
+                      to={`/product${`?${industry?._id}`}`}
                     >
                       <div
                         className="col border item item1 product-grid-image-box border-3 rounded-3"
-                        style={{ backgroundImage: `url(${product?.file})` }}
+                        style={{ backgroundImage: `url(${industry?.file})` }}
                       >
                         <div>
                           <img
                             className="product-grid-image"
-                            src={product?.icon}
+                            src={industry?.icon}
                             alt="Artificial Intelligence "
                             title="Artificial Intelligence"
                           />
                         </div>
-                        <div className="card-body py-0 px-2">
-                          <h5 className="card-title">{product?.title}</h5>
+                        <div className="card-body py-0">
+                          <h5 className="card-title">{industry?.title}</h5>
                           <p
                             className="card-text text-justify"
                             id={`proDesc${index}`}
                           >
-                            {product?.shortDesc}
+                            {industry?.shortDesc}
                           </p>
                         </div>
                       </div>
                     </Link>
                   );
                 })}
-              {/* <Link className="nav-link text-secondary" to={`/product${"?2"}`}>
+              <Link className="nav-link text-secondary" to={`/industry${"?2"}`}>
                 <div className="col item item2 border product-grid-image-box border-3 rounded-3">
                   <div>
                     <img
@@ -245,7 +245,7 @@ export default function Product() {
                     </p>
                   </div>
                 </div>
-              </Link> */}
+              </Link>
             </div>
           </div>
         </div>

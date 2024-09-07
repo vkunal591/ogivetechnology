@@ -1,7 +1,9 @@
 export interface IBlogResponse {
+    shortDesc: string;
     file: string | undefined;
     _id: string;
     title: string;
+    icon: string;
     desc: string;
     category: ICategory;
     updatedBy: IUpdatedBy;
@@ -10,6 +12,13 @@ export interface IBlogResponse {
     __v: number
 }
 
+export interface IPageDetails {
+    totalPages: number;
+    pageNumber: number;
+    sorted: boolean;
+    totalNoOfRecords: number;
+  }
+  
 
 
 export interface ICategory {
@@ -34,7 +43,7 @@ export interface IUpdatedBy {
 }
 
 export interface IBlogPayload {
-    id:string,
+    id: string,
     size: string;
     page: string;
     q: string;
