@@ -16,10 +16,10 @@ export default function FloatingLink() {
      <i className="fa fa-instagram"></i>
       <a href="https://www.instagram.com/ogivetech/" target="_blank">Follow us!</a>
     </div>
-    {/* <div className="fl-fl float-rs">
-      <i className="fa fa-rss"></i>
-      <a href="" target="_blank">Follow via RSS</a>
-    </div> */}
+    <div className="fl-fl float-rs">
+      <i className="fa fa-whatsapp"></i>
+      <a href="https://wa.me/4029702989?text=Dear%20Ogive%20I'm%20interested%20in%20your%20product%20&%20service." target="_blank">Send message</a>
+    </div>
     {/* <div className="fl-fl float-ig">
     <i className="fa fa-google-plus"></i>
     <a href="" target="_blank">Recommend us!</a>

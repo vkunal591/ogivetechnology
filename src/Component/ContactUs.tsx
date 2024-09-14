@@ -8,6 +8,7 @@ import FormService from "../Services/FormService";
 import { successMessage, errorMessage } from "../utils/fetchResponseMessage";
 import { showToast } from "../utils/toast";
 import Toast from "../Pages/AdminPanel/Admin_Component/Toast";
+import Loader from "../modals/Loader";
 
 export default function ContactUs() {
   const { register, handleSubmit, reset } = useForm();
@@ -43,10 +44,10 @@ export default function ContactUs() {
   };
 
   return (
-    <section className="py-3 py-md-5 py-xl-8 text-left cs-mt-1 mb-5">
+    <><Loader /><section className="py-3 py-md-5 py-xl-8 text-left cs-mt-1 mb-5">
       <div className="container">
         <div className="row justify-content-md-center text-center">
-          <div className="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+          <div className="col-12 col-md-10 col-lg-8">
             <h5 className="card-header cs-title-style  bg-transparent border-0 mb-3 mt-2">
               <span>
                 <img
@@ -54,12 +55,11 @@ export default function ContactUs() {
                   src={ilogo}
                   alt=""
                   width={8}
-                  style={{ rotate: "0deg" }}
-                />
+                  style={{ rotate: "0deg" }} />
               </span>
               CONTACT
             </h5>
-            <p className="text-secondary mb-2 text-center lead fs-4">
+            <p className="mb-5 text-center">
               Our team is available to provide prompt and helpful responses to
               all inquiries. You can reach us via phone, email, or by filling
               out the contact form below.
@@ -69,7 +69,7 @@ export default function ContactUs() {
         </div>
       </div>
 
-      <div className="container">
+      <div className="container mt-3">
         <div className="row">
           <div className="col-12">
             <div className="card border border-dark rounded shadow-sm overflow-hidden">
@@ -79,8 +79,8 @@ export default function ContactUs() {
                     <div className="row align-items-lg-center justify-content-center h-100">
                       <div className="col-11 col-xl-10">
                         <div className="contact-info-wrapper py-4 py-xl-5">
-                          <h2 className="h1 mb-2 text-light">Get in touch</h2>
-                          <p className="lead fs-4 text-light opacity-75 mb-4 mb-xxl-5">
+                          <h2 className="h1 mb-2 fs-4 text-light">Get in touch</h2>
+                          <p className="lead fs-5 text-light opacity-75 mb-4 mb-xxl-5">
                             We're always on the lookout to work with new
                             clients. If you're interested in working with us,
                             please get in touch in one of the following ways.
@@ -89,34 +89,32 @@ export default function ContactUs() {
                             <div className="me-4 text-primary">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="32"
-                                height="32"
+                                width="20"
+                                height="20"
                                 fill="currentColor"
                                 className="bi text-danger bi-geo"
                                 viewBox="0 0 16 16"
                               >
                                 <path
                                   fill-rule="evenodd"
-                                  d="M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.319 1.319 0 0 0-.37.265.301.301 0 0 0-.057.09V14l.002.008a.147.147 0 0 0 .016.033.617.617 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.619.619 0 0 0 .146-.15.148.148 0 0 0 .015-.033L12 14v-.004a.301.301 0 0 0-.057-.09 1.318 1.318 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465-1.281 0-2.462-.172-3.34-.465-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411z"
-                                />
+                                  d="M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.319 1.319 0 0 0-.37.265.301.301 0 0 0-.057.09V14l.002.008a.147.147 0 0 0 .016.033.617.617 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.619.619 0 0 0 .146-.15.148.148 0 0 0 .015-.033L12 14v-.004a.301.301 0 0 0-.057-.09 1.318 1.318 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465-1.281 0-2.462-.172-3.34-.465-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411z" />
                               </svg>
                             </div>
                             <div>
-                              <h4 className="mb-3 text-light">Address</h4>
-                              <address className="mb-0 text-light opacity-75">
-                                8014 Edith Blvd NE, Albuquerque, New York,
-                                United States
+                              <h4 className="mb-3 text-light fs-5">Address</h4>
+                              <address className="mb-0 fs-6 text-light opacity-75">
+                              Plot no 9, SMR ENCLAVE, NEAR HIMAYAT SAGAR, BANDLAGUDA, HYDERABAD, 500091
                               </address>
                             </div>
                           </div>
                           <div className="row mb-4 mb-xxl-5">
-                            <div className="col-12 col-xxl-6">
+                            <div className="col-12 col-xxl-6 p-0">
                               <div className="d-flex mb-4 mb-xxl-0">
                                 <div className="me-4 text-primary">
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    width="32"
-                                    height="32"
+                                    width="20"
+                                    height="20"
                                     fill="currentColor"
                                     className="bi text-danger bi-telephone-outbound"
                                     viewBox="0 0 16 16"
@@ -125,13 +123,13 @@ export default function ContactUs() {
                                   </svg>
                                 </div>
                                 <div>
-                                  <h4 className="mb-3 text-light">Phone</h4>
-                                  <p className="mb-0">
+                                  <h4 className="mb-3 text-light fs-5">Phone</h4>
+                                  <p className="mb-0 fs-6">
                                     <a
                                       className="link-light link-opacity-75 link-opacity-100-hover text-decoration-none"
-                                      href="tel:+15057922430"
+                                      href="tel:+91-40-29702989"
                                     >
-                                      (505) 792-2430
+                                      +91-40-29702989
                                     </a>
                                   </p>
                                 </div>
@@ -142,8 +140,8 @@ export default function ContactUs() {
                                 <div className="me-4 text-primary">
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
-                                    width="32"
-                                    height="32"
+                                    width="20"
+                                    height="20"
                                     fill="currentColor"
                                     className="bi text-danger bi-envelope-at"
                                     viewBox="0 0 16 16"
@@ -153,13 +151,13 @@ export default function ContactUs() {
                                   </svg>
                                 </div>
                                 <div>
-                                  <h4 className="mb-3 text-light">E-Mail</h4>
-                                  <p className="mb-0">
+                                  <h4 className="mb-3 text-light fs-5">E-Mail</h4>
+                                  <p className="mb-0 fs-6">
                                     <a
                                       className="link-light link-opacity-75 link-opacity-100-hover text-decoration-none"
-                                      href="mailto:demo@yourdomain.com"
+                                      href="mailto:info@ogivetechnology.com"
                                     >
-                                      demo@yourdomain.com
+                                      info@ogivetechnology.com
                                     </a>
                                   </p>
                                 </div>
@@ -170,8 +168,8 @@ export default function ContactUs() {
                             <div className="me-4 text-primary">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="32"
-                                height="32"
+                                width="20"
+                                height="20"
                                 fill="currentColor"
                                 className="bi text-danger bi-alarm"
                                 viewBox="0 0 16 16"
@@ -181,20 +179,20 @@ export default function ContactUs() {
                               </svg>
                             </div>
                             <div>
-                              <h4 className="mb-3 text-light">Opening Hours</h4>
+                              <h4 className="mb-3 text-light fs-5">Opening Hours</h4>
                               <div className="d-flex mb-1">
-                                <p className="text-light fw-bold mb-0 me-5">
+                                <p className="text-light fw-bold mb-0 me-5 fs-6">
                                   Mon - Fri
                                 </p>
-                                <p className="text-light opacity-75 mb-0">
+                                <p className="text-light opacity-75 mb-0 fs-6">
                                   9am - 5pm
                                 </p>
                               </div>
                               <div className="d-flex">
-                                <p className="text-light fw-bold mb-0 me-5">
+                                <p className="text-light fw-bold mb-0 me-5 fs-6">
                                   Sat - Sun
                                 </p>
-                                <p className="text-light opacity-75 mb-0">
+                                <p className="text-light opacity-75 mb-0 fs-6">
                                   9am - 2pm
                                 </p>
                               </div>
@@ -213,8 +211,7 @@ export default function ContactUs() {
                             src={ilogo}
                             alt=""
                             width={8}
-                            style={{ rotate: "0deg" }}
-                          />
+                            style={{ rotate: "0deg" }} />
                         </span>
                         NEED HELP
                       </h5>
@@ -233,8 +230,7 @@ export default function ContactUs() {
                                 className="form-control"
                                 id="fullname"
                                 {...register("name")}
-                                required
-                              />
+                                required />
                             </div>
                             <div className="col-12 col-md-6 mt-2">
                               <label
@@ -261,8 +257,7 @@ export default function ContactUs() {
                                   className="form-control"
                                   id="email"
                                   {...register("email")}
-                                  required
-                                />
+                                  required />
                               </div>
                             </div>
                             <div className="col-12 col-md-6 mt-2">
@@ -289,8 +284,7 @@ export default function ContactUs() {
                                   type="tel"
                                   className="form-control"
                                   id="phone"
-                                  {...register("phone")}
-                                />
+                                  {...register("phone")} />
                               </div>
                             </div>
                             <div className="col-12 mt-2">
@@ -305,8 +299,7 @@ export default function ContactUs() {
                                 className="form-control"
                                 id="subject"
                                 {...register("subject")}
-                                required
-                              />
+                                required />
                             </div>
                             <div className="col-12 mt-2">
                               <label
@@ -345,6 +338,6 @@ export default function ContactUs() {
         </div>
       </div>
       <Toast />
-    </section>
+    </section></>
   );
 }

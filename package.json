@@ -2,6 +2,7 @@
   "name": "ogivetechnology",
   "private": true,
   "version": "0.0.0",
+  "author": "Kunal Verma | vkunal591@gmail.com",
   "type": "module",
   "scripts": {
     "dev": "vite",

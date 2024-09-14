@@ -1,13 +1,15 @@
 import "./Css/product.css";
+const INDUSTRY_ID = import.meta.env.VITE_API_INDUSTRY_ID;
+
 import { AxiosError, AxiosResponse } from "axios";
-import iSangrah from "../assets/sangrah.a9945f49.png";
-import iTruck from "../assets/trucl.png";
-import iPehchan from "../assets/pehchan.png";
-import iGarud from "../assets/eagle.20e49177.png";
-import iSugam from "../assets/computer.png";
-import iEklavya from "../assets/fire.57d8fcb6.png";
+// import iSangrah from "../assets/sangrah.a9945f49.png";
+// import iTruck from "../assets/trucl.png";
+// import iPehchan from "../assets/pehchan.png";
+// import iGarud from "../assets/eagle.20e49177.png";
+// import iSugam from "../assets/computer.png";
+// import iEklavya from "../assets/fire.57d8fcb6.png";
 import ilogo from "../assets/iLogo.png";
-import iSwayam from "../assets/robot.02e39f5f.png";
+// import iSwayam from "../assets/robot.02e39f5f.png";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { IErrorMessageResponse } from "../interfaces/i-authentication";
@@ -15,6 +17,7 @@ import { IBlogResponse } from "../interfaces/i-blog";
 import BlogService from "../Services/BlogService";
 import { errorMessage } from "../utils/fetchResponseMessage";
 import { showToast } from "../utils/toast";
+import Loader from "../modals/Loader";
 
 export default function Industries() {
   const [industriesData, setIndustriesData] = useState<IBlogResponse[]>();
@@ -41,35 +44,48 @@ export default function Industries() {
     }
   };
   useEffect(() => {
-    const location = window.location.href.split("/");
-    const id = location[3].split("?")[1];
-    // const category = location[3].split("?")[0];
-    console.log(location[3].split("?")[1]);
-    const categoryId = id; //| "66d743bd2bf7a82260729116";
+    // const location = window.location.href.split("/");
+    // const id = location[3].split("?")[1];
+    // // const category = location[3].split("?")[0];
+    // console.log(location[3].split("?")[1]);
+    const categoryId =INDUSTRY_ID;
     getBlog("", "", "", "", categoryId);
   }, []);
 
   return (
-    <div className="row cs-mt-4 head mobile-head">
-      <h5 className="card-header cs-title-style  bg-transparent border-0 mb-5 mt-3">
-        <span>
-          <img
-            className="mx-1"
-            src={ilogo}
-            alt=""
-            width={8}
-            style={{ rotate: "0deg" }}
-          />
-        </span>
-        Industries
-      </h5>
-      <p className="text-secondary mb-5 text-center lead fs-4">
-        ogive industry Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Sapiente ut, qui, amet dolor placeat soluta nulla fugit error nam vel
-        tempore, repellendus beatae. Officiis, eveniet? Amet facilis aut quam
-        vel.
-      </p>
-      <hr className="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle" />
+    <><Loader /><div className="row cs-mt-4 head mobile-head">
+      <div className="container">
+        <div className="row justify-content-md-center">
+          <div className="col-12 col-md-10 col-lg-8 ">
+            <h5 className="card-header cs-title-style  bg-transparent border-0 mb-5 mt-3">
+              <span>
+                <img
+                  className="m-0"
+                  src={ilogo}
+                  alt=""
+                  width={8}
+                  style={{ rotate: "0deg" }} />
+              </span>
+              Industries
+            </h5>
+            <p className="mb-5 text-center">
+              Our services make the everyday life of our customers easier by
+              offering solutions in the fields of transportation, healthcare,
+              finance , defense and manufacturing. Our customers get to focus on
+              their core competence, our service experts take care of the
+              rest.In order to build long-term customer relationships, we aim to
+              offer services that make the everyday life of our customers
+              easier. Our services are reliable and cost-efficient as well as
+              including controlled and high-quality customer service. In order
+              to be able to give our customers the best possible service, we
+              invest in the competence of our personnel. It is our vision that
+              our personnel be known for the incomparable service they provide
+              and are capable of building a true partnership with our customers.
+            </p>
+            <hr className="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle" />
+          </div>
+        </div>
+      </div>
       <div className="col">
         <div id="softwareContent" className="section-content">
           <div className="container  mobile-product-container">
@@ -79,7 +95,7 @@ export default function Industries() {
                   return (
                     <Link
                       className="nav-link text-secondary"
-                      to={`/product${`?${industry?._id}`}`}
+                      to={`/industry${`?${industry?._id}`}`}
                     >
                       <div
                         className="col border item item1 product-grid-image-box border-3 rounded-3"
@@ -90,8 +106,7 @@ export default function Industries() {
                             className="product-grid-image"
                             src={industry?.icon}
                             alt="Artificial Intelligence "
-                            title="Artificial Intelligence"
-                          />
+                            title="Artificial Intelligence" />
                         </div>
                         <div className="card-body py-0">
                           <h5 className="card-title">{industry?.title}</h5>
@@ -106,153 +121,153 @@ export default function Industries() {
                     </Link>
                   );
                 })}
-              <Link className="nav-link text-secondary" to={`/industry${"?2"}`}>
-                <div className="col item item2 border product-grid-image-box border-3 rounded-3">
-                  <div>
-                    <img
-                      className="product-grid-image"
-                      src={iSangrah}
-                      alt="Blockchain"
-                      title="Blockchain"
-                    />
-                  </div>
-                  <div className="card-body py-0">
-                    <h5 className="card-title">Sangrah</h5>
-                    <p className="card-text text-justify">
-                      Inventory & warehouse automation solution. Can be
-                      configured to work with Rakshak enabling a fully automated
-                      end-to-end process automation from maintenance to
-                      procurement.{" "}
-                    </p>
-                  </div>
-                </div>
-              </Link>
-              <Link className="nav-link text-secondary" to={`/product${"?3"}`}>
-                <div className="col item item3 border product-grid-image-box border-3 rounded-3">
-                  <div>
-                    <img
-                      className="product-grid-image"
-                      src={iTruck}
-                      alt="Embedded Systems"
-                      title="Embedded Systems"
-                    />
-                  </div>
-                  <div className="card-body py-0">
-                    <h5 className="card-title">Chalak</h5>
-                    <p className="card-text text-justify">
-                      Fleet health monitoring & tracking solution. This product
-                      is aided with driver behavior monitoring and fuel
-                      consumption features.{" "}
-                    </p>
-                  </div>
-                </div>
-              </Link>
-              <Link className="nav-link text-secondary" to={`/product${"?4"}`}>
-                <div className="col  item item4 border product-grid-image-box border-3 rounded-3">
-                  <div>
-                    <img
-                      className="product-grid-image"
-                      src={iPehchan}
-                      alt="Cybersecurity"
-                      title="Cybersecurity"
-                    />
-                  </div>
-                  <div className="card-body py-0">
-                    <h5 className="card-title">Pehchan</h5>
-                    <p className="card-text text-justify">
-                      AI based security & surveillance system meant for
-                      attendance monitoring, visitor management, intruder
-                      detection.{" "}
-                    </p>
-                  </div>
-                </div>
-              </Link>
-              <Link className="nav-link text-secondary" to={`/product${"?5"}`}>
-                <div className="col item item5 border product-grid-image-box border-3 rounded-3">
-                  <div>
-                    <img
-                      className="product-grid-image"
-                      src={iGarud}
-                      alt="Internet Of Things"
-                      title="Internet Of Things"
-                    />
-                  </div>
-                  <div className="card-body py-0">
-                    <h5 className="card-title">Garud</h5>
-                    <p className="card-text text-justify">
-                      UAV ( Service / Product ) Customised solution for
-                      deploying aerial or under water platform with desired
-                      payload and operational specification.SWARM concept is
-                      also offered.{" "}
-                    </p>
-                  </div>
-                </div>
-              </Link>
-              <Link className="nav-link text-secondary" to={`/product${"?6"}`}>
-                <div className="col item item6 border product-grid-image-box border-3 rounded-3">
-                  <div>
-                    <img
-                      className="product-grid-image"
-                      src={iSugam}
-                      alt="Digital Twinning"
-                      title="Digital Twinning"
-                    />
-                  </div>
-                  <div className="card-body py-0">
-                    <h5 className="card-title">Sugam</h5>
-                    <p className="card-text text-justify">
-                      Blockchain integrated with AI solution for land records,
-                      education & health care automation solution.{" "}
-                    </p>
-                  </div>
-                </div>
-              </Link>
-              <Link className="nav-link text-secondary" to={`/product${"?7"}`}>
-                <div className="col item item7 border product-grid-image-box border-3 rounded-3">
-                  <div>
-                    <img
-                      className="product-grid-image"
-                      src={iEklavya}
-                      alt=" Robotics"
-                      title="Robotics"
-                    />
-                  </div>
-                  <div className="card-body py-0">
-                    <h5 className="card-title">Eklavya</h5>
-                    <p className="card-text text-justify">
-                      Simulators for various systems we are certified production
-                      agency for a specified class of simulators for homeland
-                      and defense application{" "}
-                    </p>
-                  </div>
-                </div>
-              </Link>
-              <Link className="nav-link text-secondary" to={`/product${"?8"}`}>
-                <div className="col item item8 border product-grid-image-box border-3 rounded-3">
-                  <div>
-                    <img
-                      className="product-grid-image"
-                      src={iSwayam}
-                      alt="Quantum Computing"
-                      title="Quantum Computing"
-                    />
-                  </div>
-                  <div className="card-body py-0">
-                    <h5 className="card-title">Swayam</h5>
-                    <p className="card-text text-justify">
-                      Robotic solutions for defense and warehouse operations
-                      automation{" "}
-                    </p>
-                  </div>
-                </div>
-              </Link>
+              {/* <Link className="nav-link text-secondary" to={`/industry${"?2"}`}>
+      <div className="col item item2 border product-grid-image-box border-3 rounded-3">
+        <div>
+          <img
+            className="product-grid-image"
+            src={iSangrah}
+            alt="Blockchain"
+            title="Blockchain"
+          />
+        </div>
+        <div className="card-body py-0">
+          <h5 className="card-title">Sangrah</h5>
+          <p className="card-text text-justify">
+            Inventory & warehouse automation solution. Can be
+            configured to work with Rakshak enabling a fully automated
+            end-to-end process automation from maintenance to
+            procurement.{" "}
+          </p>
+        </div>
+      </div>
+    </Link>
+    <Link className="nav-link text-secondary" to={`/product${"?3"}`}>
+      <div className="col item item3 border product-grid-image-box border-3 rounded-3">
+        <div>
+          <img
+            className="product-grid-image"
+            src={iTruck}
+            alt="Embedded Systems"
+            title="Embedded Systems"
+          />
+        </div>
+        <div className="card-body py-0">
+          <h5 className="card-title">Chalak</h5>
+          <p className="card-text text-justify">
+            Fleet health monitoring & tracking solution. This product
+            is aided with driver behavior monitoring and fuel
+            consumption features.{" "}
+          </p>
+        </div>
+      </div>
+    </Link>
+    <Link className="nav-link text-secondary" to={`/product${"?4"}`}>
+      <div className="col  item item4 border product-grid-image-box border-3 rounded-3">
+        <div>
+          <img
+            className="product-grid-image"
+            src={iPehchan}
+            alt="Cybersecurity"
+            title="Cybersecurity"
+          />
+        </div>
+        <div className="card-body py-0">
+          <h5 className="card-title">Pehchan</h5>
+          <p className="card-text text-justify">
+            AI based security & surveillance system meant for
+            attendance monitoring, visitor management, intruder
+            detection.{" "}
+          </p>
+        </div>
+      </div>
+    </Link>
+    <Link className="nav-link text-secondary" to={`/product${"?5"}`}>
+      <div className="col item item5 border product-grid-image-box border-3 rounded-3">
+        <div>
+          <img
+            className="product-grid-image"
+            src={iGarud}
+            alt="Internet Of Things"
+            title="Internet Of Things"
+          />
+        </div>
+        <div className="card-body py-0">
+          <h5 className="card-title">Garud</h5>
+          <p className="card-text text-justify">
+            UAV ( Service / Product ) Customised solution for
+            deploying aerial or under water platform with desired
+            payload and operational specification.SWARM concept is
+            also offered.{" "}
+          </p>
+        </div>
+      </div>
+    </Link>
+    <Link className="nav-link text-secondary" to={`/product${"?6"}`}>
+      <div className="col item item6 border product-grid-image-box border-3 rounded-3">
+        <div>
+          <img
+            className="product-grid-image"
+            src={iSugam}
+            alt="Digital Twinning"
+            title="Digital Twinning"
+          />
+        </div>
+        <div className="card-body py-0">
+          <h5 className="card-title">Sugam</h5>
+          <p className="card-text text-justify">
+            Blockchain integrated with AI solution for land records,
+            education & health care automation solution.{" "}
+          </p>
+        </div>
+      </div>
+    </Link>
+    <Link className="nav-link text-secondary" to={`/product${"?7"}`}>
+      <div className="col item item7 border product-grid-image-box border-3 rounded-3">
+        <div>
+          <img
+            className="product-grid-image"
+            src={iEklavya}
+            alt=" Robotics"
+            title="Robotics"
+          />
+        </div>
+        <div className="card-body py-0">
+          <h5 className="card-title">Eklavya</h5>
+          <p className="card-text text-justify">
+            Simulators for various systems we are certified production
+            agency for a specified class of simulators for homeland
+            and defense application{" "}
+          </p>
+        </div>
+      </div>
+    </Link>
+    <Link className="nav-link text-secondary" to={`/product${"?8"}`}>
+      <div className="col item item8 border product-grid-image-box border-3 rounded-3">
+        <div>
+          <img
+            className="product-grid-image"
+            src={iSwayam}
+            alt="Quantum Computing"
+            title="Quantum Computing"
+          />
+        </div>
+        <div className="card-body py-0">
+          <h5 className="card-title">Swayam</h5>
+          <p className="card-text text-justify">
+            Robotic solutions for defense and warehouse operations
+            automation{" "}
+          </p>
+        </div>
+      </div>
+    </Link> */}
             </div>
           </div>
         </div>
       </div>
       {/* <div className="col-7">
-        <video className="w-100" src={animaOne} muted loop autoPlay={true}></video>
-      </div> */}
-    </div>
+      <video className="w-100" src={animaOne} muted loop autoPlay={true}></video>
+    </div> */}
+    </div></>
   );
 }

@@ -34,6 +34,14 @@ import Gallery from "./Component/Gallery";
 import Industries from "./Component/Industries";
 import ViewCareers from "./Pages/AdminPanel/User/ViewCareers";
 import ViewConatacts from "./Pages/AdminPanel/User/ViewContacts";
+import ViewSubscriber from "./Pages/AdminPanel/User/ViewSubscriber";
+import LandingPageForm from "./Pages/AdminPanel/Admin_Control/LandigPageForm";
+import LandingPageUpdateForm from "./Pages/AdminPanel/Admin_Control/LandigPageUpdateForm";
+import OurImpact from "./Pages/StaticPages/OurImpact";
+import Quality from "./Pages/StaticPages/Quality";
+import Automotive from "./Pages/StaticPages/Automotive";
+import Mining from "./Pages/StaticPages/Mining";
+import Aeromation from "./Pages/StaticPages/Aeromation";
 
 // Helper function to check authentication
 const isAuthenticated = () => {
@@ -64,11 +72,11 @@ const router = createBrowserRouter([
           { path: "", element: <LandingPage /> },
           {
             path: "services",
-            element: <Service />
+            element: <Service serviceSectionData={undefined} />
           },
           {
             path: "products",
-            element: <Product />
+            element: <Product productSectionData={undefined} />
           },
           {
             path: "product",
@@ -117,7 +125,15 @@ const router = createBrowserRouter([
           {
             path: "gallery",
             element: <Gallery />
-          }
+          },
+          { path: "whoweare", element: <OurImpact /> },
+          { path: "quality", element: <Quality /> },
+          {path:"automotive",element:<Automotive />},
+          {path:"mining",element:<Mining />},
+          {path:"aerospace",element:<Aeromation />}
+
+
+          
         ]
       }
     ],
@@ -182,7 +198,17 @@ const router = createBrowserRouter([
             element: <TheamSetting />
           },
           { path: "viewcareers", element: <ViewCareers /> },
-          { path: "viewcontacts", element: <ViewConatacts /> }
+          { path: "viewcontacts", element: <ViewConatacts /> },
+          { path: "viewsubscriber", element: <ViewSubscriber /> },
+          { path: "site/landigpagedetails", element: <LandingPageForm /> },
+          {
+            path: "site/updatelandigpagedetails",
+            element: <LandingPageUpdateForm />
+          },
+          {
+            path: "site/updatelandigpagedetails",
+            element: <LandingPageUpdateForm />
+          }
         ]
       }
     ],

@@ -107,3 +107,17 @@ img {
   top: 435px;
 }
 /* Floating Social Media Bar Style Ends Here */
+
+
+
+@media (min-width: 310px) and (max-width: 767px) {
+
+  .fl-fl{
+  height: 70px;
+  width: 150px;
+  right: -115px;
+  }
+
+
+
+}

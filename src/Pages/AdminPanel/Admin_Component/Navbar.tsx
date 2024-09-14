@@ -35,17 +35,13 @@ export default function Navbar() {
           </li>
           <li className="nav-item d-none d-sm-inline-block">
             <Link to="viewcontacts" className="nav-link">
-              Contatcts
+              Contacts
             </Link>
           </li>
         </ul>
 
         {/* <!-- Right navbar links -->/ */}
         <ul className="navbar-nav ml-auto">
-   
-   
-    
-     
           <li className="nav-item">
             <a
               className="nav-link"

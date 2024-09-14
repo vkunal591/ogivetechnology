@@ -1,3 +1,4 @@
+const WHY_ID = import.meta.env.VITE_API_WHY_ID;
 import { useEffect, useState } from "react";
 import { AxiosError, AxiosResponse } from "axios";
 import { IErrorMessageResponse } from "../interfaces/i-authentication";
@@ -6,6 +7,7 @@ import BlogService from "../Services/BlogService";
 import { errorMessage } from "../utils/fetchResponseMessage";
 import { showToast } from "../utils/toast";
 import ilogo from "../assets/iLogo.png";
+import Loader from "../modals/Loader";
 
 export default function Why() {
   const [whyData, setWhyData] = useState<IBlogResponse[]>();
@@ -37,11 +39,11 @@ export default function Why() {
     // const id = location[3].split("?")[1];
     // // const category = location[3].split("?")[0];
     // console.log(location[3].split("?")[1]);
-    const categoryId = "66dc065e65cf3e3890e3619f";
+    const categoryId = WHY_ID;
     getBlog("", "", "", "", categoryId);
   }, []);
   return (
-    <section className="py-3 py-md-5">
+    <><Loader /><section className="py-3 py-md-5">
       <div className="container">
         <div className="row justify-content-md-center">
           <div className="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
@@ -52,16 +54,12 @@ export default function Why() {
                   src={ilogo}
                   alt=""
                   width={8}
-                  style={{ rotate: "0deg" }}
-                />
+                  style={{ rotate: "0deg" }} />
               </span>
               Why Ogive
             </h5>
             <p className="text-secondary mb-5 text-center lead fs-4">
-              Why you choose ogive Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Totam praesentium modi minima qui molestias rem
-              eligendi ipsam consequatur quam fugiat, asperiores soluta officia
-              molestiae beatae ratione fugit. Iste, quos molestiae!
+              
             </p>
             <hr className="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle" />
           </div>
@@ -85,8 +83,7 @@ export default function Why() {
                             className="img-fluid bsb-scale bsb-hover-scale-up w-100"
                             loading="lazy"
                             src={why?.file}
-                            alt="Spokes"
-                          />
+                            alt="Spokes" />
                         </a>
                       </figure>
                       <div className="card-body border-0 bg-white p-4">
@@ -121,6 +118,6 @@ export default function Why() {
             })}
         </div>
       </div>
-    </section>
+    </section></>
   );
 }

@@ -41,5 +41,24 @@ export default {
   },
   deleteContact: function (id: string) {
     return axiosInstance.delete(`${url.contactUrl}/${id}`);
+  },
+
+  createSubscriber: function (payload:{email:string}) {
+    return axiosInstance.post(url.subcriberUrl,payload);
+  },
+  getSubscriber: function (id: string) {
+    return axiosInstance.get(`${url.subcriberUrl}/${id}`);
+  },
+  getSubcribers: function (id: string,
+    size: number | null,
+    page: number | null,
+    email: string
+  ) {
+    return axiosInstance.get(`${url.subcriberUrl}/${id}`, {
+      params: { size: size, page: page, email: email }
+    });
+  },
+  deleteSubscriber: function (id: string) {
+    return axiosInstance.delete(`${url.subcriberUrl}/${id}`);
   }
 } 

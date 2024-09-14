@@ -24,6 +24,8 @@ export default function CreateBlog() {
   const [iconName, setIconName] = useState("Choose File");
   const [imageUrl, setimageUrl] = useState("");
   const [iconUrl, seticonUrl] = useState("");
+  const [isIconLoading, setIsIconLoading] = useState(false);
+  const [isImageLoading, setIsImageLoading] = useState(false);
   const { register, handleSubmit, reset, resetField } = useForm();
   const editor = useRef(null);
   const [content, setContent] = useState("");
@@ -38,9 +40,11 @@ export default function CreateBlog() {
   }, []);
   const getCategory = async () => {
     try {
-      await CategoryService.getCategory("",null,null).then((res: AxiosResponse) => {
-        setCategoryDropdownList(res.data.details.categories);
-      });
+      await CategoryService.getCategory("", null, null).then(
+        (res: AxiosResponse) => {
+          setCategoryDropdownList(res.data.details.categories);
+        }
+      );
     } catch (error) {
       const message = errorMessage(error as AxiosError<IErrorMessageResponse>);
       showToast({
@@ -55,6 +59,11 @@ export default function CreateBlog() {
   }) => {
     const name = event.target.name;
     try {
+      if (name === "icon") {
+        setIsIconLoading(true);
+      } else {
+        setIsImageLoading(true);
+      }
       const file = event.target.files[0];
       const formData = new FormData();
       formData.append("file", file);
@@ -85,6 +94,12 @@ export default function CreateBlog() {
         message: message,
         type: "error"
       });
+    } finally {
+      if (name === "icon") {
+        setIsIconLoading(false);
+      } else {
+        setIsImageLoading(false);
+      }
     }
   };
 
@@ -166,7 +181,19 @@ export default function CreateBlog() {
                           <label htmlFor="exampleInputFile">Icon</label>
                           <div className="">
                             <label htmlFor="upload1" className="form-control">
-                              {iconName}
+                              {isIconLoading ? (
+                                <i
+                                  className="fa  fa-spin border-2 inline-block p-2 "
+                                  style={{
+                                    borderRadius: "100%",
+                                    borderBottom: "none",
+                                    borderTop: "none",
+                                    width: "4px"
+                                  }}
+                                />
+                              ) : (
+                                iconName
+                              )}
                             </label>
 
                             <input
@@ -186,7 +213,19 @@ export default function CreateBlog() {
                           <label htmlFor="exampleInputFile">Image</label>
                           <div className="">
                             <label htmlFor="upload2" className="form-control">
-                              {imageName}
+                              {isImageLoading ? (
+                                <i
+                                  className="fa  fa-spin border-2 inline-block p-2 "
+                                  style={{
+                                    borderRadius: "100%",
+                                    borderBottom: "none",
+                                    borderTop: "none",
+                                    width: "4px"
+                                  }}
+                                />
+                              ) : (
+                                imageName
+                              )}
                             </label>
 
                             <input

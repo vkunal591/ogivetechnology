@@ -1,3 +1,5 @@
+const CAREER_ID = import.meta.env.VITE_API_CAREER_ID;
+
 import "./Css/blog.css";
 import "./Css/career.css";
 import { AxiosError, AxiosResponse } from "axios";
@@ -13,6 +15,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import FileService from "../Services/FileService";
 import { ICareerForm } from "../interfaces/i-form";
 import FormService from "../Services/FormService";
+import Loader from "../modals/Loader";
 
 export default function Career() {
   const [careerData, setCareerData] = useState<IBlogResponse[]>();
@@ -96,14 +99,14 @@ export default function Career() {
 
   useEffect(() => {
     // const location = window.location.href.split("/");
-    const categoryId = "66dc065165cf3e3890e36199";
+    const categoryId = CAREER_ID;
     getBlog("", "", "", "", categoryId);
   }, []);
   return (
-    <section className="py-3 py-md-5 py-xl-8 text-left cs-mt-1 mb-5">
+    <><Loader /><section className="py-3 py-md-5 py-xl-8 text-left cs-mt-1 mb-5">
       <div className="container">
         <div className="row justify-content-md-center text-center">
-          <div className="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+          <div className="col-12 col-md-10 col-lg-8">
             <h5 className="card-header cs-title-style  bg-transparent border-0 mb-3 mt-2">
               <span>
                 <img
@@ -111,12 +114,11 @@ export default function Career() {
                   src={ilogo}
                   alt=""
                   width={8}
-                  style={{ rotate: "0deg" }}
-                />
+                  style={{ rotate: "0deg" }} />
               </span>
               CAREER WITH US
             </h5>
-            <p className="text-secondary mb-2 text-center lead fs-4">
+            <p className="mb-5 text-center">
               Our team is available to provide prompt and helpful responses to
               all inquiries. You can reach us via phone, email, or by filling
               out the contact form below.
@@ -126,7 +128,7 @@ export default function Career() {
         </div>
       </div>
 
-      <div className="container">
+      <div className="container mt-4">
         <div className="row">
           <div className="col-12">
             <div className="card border border-dark rounded shadow-sm overflow-hidden">
@@ -157,7 +159,7 @@ export default function Career() {
                       </div>
                     </div>
                   </div>
-                  <div className="col-12 col-lg-6">
+                  <div className="col-12 col-lg-6 mt-2">
                     <div className="row align-items-lg-center h-100 align-content-center">
                       <h5 className="card-header cs-title-style  bg-transparent border-0 mb- mt-3">
                         <span>
@@ -166,8 +168,7 @@ export default function Career() {
                             src={ilogo}
                             alt=""
                             width={8}
-                            style={{ rotate: "0deg" }}
-                          />
+                            style={{ rotate: "0deg" }} />
                         </span>
                         Personal Information
                       </h5>
@@ -186,8 +187,7 @@ export default function Career() {
                                 className="form-control"
                                 id="fullname"
                                 {...register("name")}
-                                required
-                              />
+                                required />
                             </div>
                             <div className="col-12 col-md-6 mt-2">
                               <label
@@ -214,8 +214,7 @@ export default function Career() {
                                   className="form-control"
                                   id="email"
                                   {...register("email")}
-                                  required
-                                />
+                                  required />
                               </div>
                             </div>
                             <div className="col-12 col-md-6 mt-2">
@@ -243,8 +242,7 @@ export default function Career() {
                                   className="form-control"
                                   id="phone"
                                   {...register("phone")}
-                                  required
-                                />
+                                  required />
                               </div>
                             </div>
                             <div className="col-12 mt-2">
@@ -263,8 +261,7 @@ export default function Career() {
                                     uploadFile(e);
                                   }
                                 })}
-                                required
-                              />
+                                required />
                             </div>
                             <div className="col-12 mt-2">
                               <label
@@ -279,8 +276,7 @@ export default function Career() {
                                 className="form-control"
                                 id="subject"
                                 {...register("role")}
-                                required
-                              />
+                                required />
                             </div>
                             <div className="col-12 mt-2">
                               <label
@@ -298,7 +294,7 @@ export default function Career() {
                                 required
                               ></textarea>
                             </div>
-                            <div className="col-12 mt-2">
+                            <div className="col-12 mt-2 mb-5">
                               <div className="d-grid">
                                 <button
                                   className="btn btn-primary btn-lg"
@@ -319,6 +315,6 @@ export default function Career() {
           </div>
         </div>
       </div>
-    </section>
+    </section></>
   );
 }

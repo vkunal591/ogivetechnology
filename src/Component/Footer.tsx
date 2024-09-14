@@ -1,3 +1,5 @@
+import { FieldValues, useForm } from "react-hook-form";
+import { AxiosError, AxiosResponse } from "axios";
 import iLogo from "../assets/ogive logo.png";
 // import iFacebook from "../assets/facebook.04d54a32.png";
 // import iInstagram from "../assets/instagram.0634a5ba.png";
@@ -6,8 +8,35 @@ import iLogo from "../assets/ogive logo.png";
 
 import "./Css/footer.css";
 import { Link } from "react-router-dom";
+import FormService from "../Services/FormService";
+import { IErrorMessageResponse } from "../interfaces/i-authentication";
+import { successMessage, errorMessage } from "../utils/fetchResponseMessage";
+import { showToast } from "../utils/toast";
 
 export default function Footer() {
+  const { register, handleSubmit, resetField } = useForm();
+  const subscribe = async (data: FieldValues) => {
+    try {
+      const payload = {
+        email: data?.email
+      };
+      await FormService.createSubscriber(payload).then((res: AxiosResponse) => {
+        const message = successMessage(res.data.details.message);
+        showToast({
+          message: message,
+          type: "success"
+        });
+        resetField("email");
+      });
+    } catch (error) {
+      const message = errorMessage(error as AxiosError<IErrorMessageResponse>);
+      showToast({
+        message: message,
+        type: "error"
+      });
+    }
+  };
+
   return (
     <footer className="footer-section">
       <div className="container">
@@ -19,9 +48,9 @@ export default function Footer() {
                 <div className="cta-text">
                   <h4 className="text-left">Find us</h4>
 
-                  <p className="text-left cs-w-80 " >
-                    Ogive Technology, Plot Num 205, Suncity, Bandlaguda,
-                    Hyderabad, Telangana, India-500086
+                  <p className="text-left cs-w-80 ">
+                    Plot no 9, SMR ENCLAVE, NEAR HIMAYAT SAGAR, BANDLAGUDA,
+                    HYDERABAD, 500091
                   </p>
                 </div>
               </div>
@@ -32,7 +61,7 @@ export default function Footer() {
                 <div className="cta-text">
                   <h4 className="text-left">Call us</h4>
                   <Link className="nav-link pl-0" to="tel:+91-40-29702989">
-                  <p className="text-left text-dark" >+91-40-29702989</p>
+                    <p className="text-left text-dark">+91-40-29702989</p>
                   </Link>
                 </div>
               </div>
@@ -46,7 +75,9 @@ export default function Footer() {
                     className="nav-link pl-0"
                     to="mailto:info@ogivetechnology.com"
                   >
-                    <p className="text-left text-dark" >info@ogivetechnology.com</p>
+                    <p className="text-left text-dark">
+                      info@ogivetechnology.com
+                    </p>
                   </Link>
                 </div>
               </div>
@@ -70,7 +101,6 @@ export default function Footer() {
                     Intelligence, Digital Twining, and Immersive Technologies.
                   </p>
                 </div>
-               
               </div>
             </div>
             <div className="col-xl-4 col-lg-4 col-md-6 mb-30">
@@ -80,34 +110,52 @@ export default function Footer() {
                 </div>
                 <ul>
                   <li>
-                    <Link to="/">Home</Link>
+                    <Link to="/" className="nav-link">
+                      Home
+                    </Link>
                   </li>
                   <li>
-                    <Link to="products">Products</Link>
+                    <Link to="products" className="nav-link">
+                      Products
+                    </Link>
                   </li>
                   <li>
-                    <Link to="services">Our Services</Link>
+                    <Link to="services" className="nav-link">
+                      Our Services
+                    </Link>
                   </li>
                   <li>
-                    <Link to="industries">Industries</Link>
+                    <Link to="industries" className="nav-link">
+                      Industries
+                    </Link>
                   </li>
                   <li>
-                    <Link to="contact-us">Contact</Link>
+                    <Link to="contact-us" className="nav-link">
+                      Contact
+                    </Link>
                   </li>
                   <li>
-                    <Link to="about">About us</Link>
+                    <Link to="about" className="nav-link">
+                      About us
+                    </Link>
                   </li>
                   <li>
-                    <Link to="blog">Our Blog</Link>
+                    <Link to="blog" className="nav-link">
+                      Our Blogs
+                    </Link>
                   </li>
                   <li>
-                    <Link to="about">Expert Team</Link>
+                    <Link to="faq" className="nav-link">
+                      Faq
+                    </Link>
                   </li>
                   <li>
-                    <Link to="contct-us">Contact us</Link>
+                    <Link to="why" className="nav-link">
+                      Why Ogive
+                    </Link>
                   </li>
                   <li>
-                    <Link to="blog">Latest News</Link>
+                    <Link to="gallery" className="nav-link">Events & Gallery</Link>
                   </li>
                 </ul>
               </div>
@@ -124,8 +172,13 @@ export default function Footer() {
                   </p>
                 </div>
                 <div className="subscribe-form">
-                  <form action="">
-                    <input type="text" placeholder="Email Address" />
+                  <form onSubmit={handleSubmit(subscribe)}>
+                    <input
+                      type="text"
+                      className="text-black"
+                      placeholder="Email Address"
+                      {...register("email")}
+                    />
                     <button>
                       <i className="fab fa-telegram-plane"></i>
                     </button>
@@ -141,47 +194,12 @@ export default function Footer() {
           <div className="row">
             <div className="col-12 col-xl-12 col-lg-12 mt-1 text-center text-lg-left">
               <div className="copyright-text text-center">
-                <p className="">
-                  Copyright &copy; 2020-2024 Ogive Technology, all rights reserved.
+                <p className="text-white">
+                  Copyright &copy; 2020-2024 Ogive Technology, all rights
+                  reserved.
                 </p>
               </div>
             </div>
-            {/* <div className="col-xl-6 col-lg-6 d-none d-lg-block text-right">
-              <div className="footer-menu">
-                <ul>
-                  <li>
-                    <a to="">Home</a>
-                  </li>
-                  <li>
-                    <a to="">Terms</a>
-                  </li>
-                  <li>
-                    <a to="">Privacy</a>
-                  </li>
-                  <li>
-                    <a to="">Policy</a>
-                  </li>
-                  <li>
-                    <a to="">Contact</a>
-                  </li>
-                </ul> 
-                 <div className="footer-social-icon d-none"  >
-                   <span>Follow us</span>
-                  <Link to="https://www.facebook.com/Ogive-Technology-485725495104947/">
-                    <img src={iFacebook} className="facebook-bg " alt="facebook" width={30} />
-                  </Link>
-                  <Link to="https://twitter.com/OgiveTechnology">
-                    <img src={iTwitter} className="twitter-bg " alt="Twitter" width={30} />
-                  </Link>
-                  <Link to="https://www.instagram.com/ogivetech/">
-                    <img src={iInstagram} className="google-bg " alt="Instagram" width={30} />
-                  </Link>
-                  <Link to="https://www.linkedin.com/company-beta/13356002/">
-                    <img src={iLinkedin} className="twitter-bg " alt="Linkedin" width={30} />
-                  </Link>
-                </div>
-              </div>
-            </div> */}
           </div>
         </div>
       </div>

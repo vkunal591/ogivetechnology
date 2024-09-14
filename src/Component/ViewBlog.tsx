@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { IBlogResponse } from "../interfaces/i-blog";
 
 export default function ViewBlog(blogData: {
@@ -51,7 +51,7 @@ export default function ViewBlog(blogData: {
               </p>
             </div>
 
-            <div>
+            {/* <div>
               <h4 className="fst-italic">Recent posts</h4>
               <ul className="list-unstyled">
                 <li>
@@ -73,7 +73,7 @@ export default function ViewBlog(blogData: {
                     <div className="col-lg-8">
                       <h6 className="mb-0">Sangrah</h6>
                       <small className="text-body-secondary">
-                        {/* January 15, 2024 */}
+                        {/* January 15, 2024 
                       </small>
                     </div>
                   </Link>
@@ -97,7 +97,7 @@ export default function ViewBlog(blogData: {
                     <div className="col-lg-8">
                       <h6 className="mb-0">Pehchan</h6>
                       <small className="text-body-secondary">
-                        {/* January 14, 2024 */}
+                        {/* January 14, 2024 
                       </small>
                     </div>
                   </Link>
@@ -121,13 +121,13 @@ export default function ViewBlog(blogData: {
                     <div className="col-lg-8">
                       <h6 className="mb-0">Chalak</h6>
                       <small className="text-body-secondary">
-                        {/* January 13, 2024 */}
+                        {/* January 13, 2024 
                       </small>
                     </div>
                   </Link>
                 </li>
               </ul>
-            </div>
+            </div> */}
 
             <div className="p-4">
               <h4 className="fst-italic">Elsewhere</h4>

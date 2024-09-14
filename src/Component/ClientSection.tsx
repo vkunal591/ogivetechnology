@@ -1,14 +1,17 @@
-import ilogo from "../../../assets/iLogo.png";
+const CLIENTS_ID = import.meta.env.VITE_API_CLIENTS_ID;
+
+import ilogo from "../assets/iLogo.png";
 import { AxiosError, AxiosResponse } from "axios";
 import styled, { keyframes, css } from "styled-components";
-import { IBlogResponse } from "../../../interfaces/i-blog";
 import { useState, useEffect } from "react";
-import { IErrorMessageResponse } from "../../../interfaces/i-authentication";
-import BlogService from "../../../Services/BlogService";
-import { errorMessage } from "../../../utils/fetchResponseMessage";
-import { showToast } from "../../../utils/toast";
+import { IErrorMessageResponse } from "../interfaces/i-authentication";
+import { IBlogResponse } from "../interfaces/i-blog";
+import BlogService from "../Services/BlogService";
+import { errorMessage } from "../utils/fetchResponseMessage";
+import { showToast } from "../utils/toast";
+import { ILandingPagePayload } from "../interfaces/i-landingpage";
 
-export default function ClientSection() {
+export default function ClientSection(porps:{clientSectionData:ILandingPagePayload | undefined}) {
   // const row1 = [
   //   "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
   //   "https://bel-india.in/wp-content/uploads/2022/11/BEL-Logo-PNG.png",
@@ -56,24 +59,35 @@ export default function ClientSection() {
     // const id = location[3].split("?")[1];
     // // const category = location[3].split("?")[0];
     // console.log(location[3].split("?")[1]);
-    const categoryId = "66d9f227361fdc43a8b73864";
+    const categoryId = CLIENTS_ID;
     getBlog("", "", "", "", categoryId);
   }, []);
   return (
+    
     <AppContainer>
       <Wrapper>
-        <h5 className="card-header cs-title-style  bg-transparent border-0 mb-5 mt-3">
-          <span>
-            <img
-              className="mx-1"
-              src={ilogo}
-              alt=""
-              width={8}
-              style={{ rotate: "0deg" }}
-            />
-          </span>
-          With Great Outcomes
-        </h5>
+            <div className="container">
+        <div className="row justify-content-md-center">
+          <div className="col-12 col-md-10 col-lg-8">
+          <h5 className="card-header cs-title-style  bg-transparent border-0 mb-5 mt-3">
+        <span>
+          <img
+            className="m-0"
+            src={ilogo}
+            alt=""
+            width={8}
+            style={{ rotate: "0deg" }}
+          />
+        </span>
+        With Great Outcomes
+      </h5>
+      <p className="mb-5 text-center">
+   {porps?.clientSectionData?.outcomeDesc}
+      </p>
+            <hr className="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle"/>
+          </div>
+        </div>
+      </div>
         <Marquee>
           <MarqueeGroup>
             {clientData?.map((el) => (

@@ -1,5 +1,5 @@
-// const apiVersion = import.meta.env.VITE_REACT_APP_API_URL;
-export const baseUrl = `http://localhost:8000`;
+const apiBaseUrl = import.meta.env.VITE_API_BACKEND_BASE_URL;
+export const baseUrl = apiBaseUrl || `http://localhost:8000`;
 
 export const loginUrl = `${baseUrl}/api/v1/auth/signin`;
 export const createUsers = `${baseUrl}/api/v1/auth/signup`;
@@ -26,6 +26,10 @@ export const deleteFileByKey = `${baseUrl}/api/v1/file/delete-file`;
 export const uploadImageUrl = `${baseUrl}/api/v1/local/upload`;
 export const careerUrl = `${baseUrl}/api/v1/career`;
 export const contactUrl = `${baseUrl}/api/v1/contact`;
+export const subcriberUrl = `${baseUrl}/api/v1/subscriber`;
+export const landingPageUrl = `${baseUrl}/api/v1/landingpage`;
+
+
 
 
 

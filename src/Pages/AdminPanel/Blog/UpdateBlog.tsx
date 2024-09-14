@@ -28,6 +28,8 @@ export default function UpdateBlog() {
   const [iconName, setIconName] = useState("Choose File");
   const [imageUrl, setimageUrl] = useState("");
   const [iconUrl, seticonUrl] = useState("");
+  const [isIconLoading, setIsIconLoading] = useState(false);
+  const [isImageLoading, setIsImageLoading] = useState(false);
   const editor = useRef(null);
   const [content, setContent] = useState("");
 
@@ -41,9 +43,11 @@ export default function UpdateBlog() {
   }, []);
   const getCategory = async () => {
     try {
-      await CategoryService.getCategory("",null,null).then((res: AxiosResponse) => {
-        setCategoryDropdownList(res.data.details.categories);
-      });
+      await CategoryService.getCategory("", null, null).then(
+        (res: AxiosResponse) => {
+          setCategoryDropdownList(res.data.details.categories);
+        }
+      );
     } catch (error) {
       const message = errorMessage(error as AxiosError<IErrorMessageResponse>);
       showToast({
@@ -55,7 +59,7 @@ export default function UpdateBlog() {
 
   const getBlog = async (id: string) => {
     try {
-      await BlogService.getBlog(id,null,null).then((res) => {
+      await BlogService.getBlog(id, null, null).then((res) => {
         const data = res.data.details.post;
         setBlogData(res.data.details.post);
         setContent(data?.desc);
@@ -86,6 +90,11 @@ export default function UpdateBlog() {
   }) => {
     const name = event.target.name;
     try {
+      if (name === "icon") {
+        setIsIconLoading(true);
+      } else {
+        setIsImageLoading(true);
+      }
       const file = event.target.files[0];
       const formData = new FormData();
       formData.append("file", file);
@@ -101,7 +110,6 @@ export default function UpdateBlog() {
         }
         const message = successMessage(res);
         showToast({ message: message, type: "success" });
-   
       });
     } catch (error) {
       console.error("Upload Failed");
@@ -112,12 +120,18 @@ export default function UpdateBlog() {
       } else {
         setIconName("Choose File");
         resetField("icon");
-      };
+      }
       setImageName("Choose File");
       showToast({
         message: message,
         type: "error"
       });
+    } finally {
+      if (name === "icon") {
+        setIsIconLoading(false);
+      } else {
+        setIsImageLoading(false);
+      }
     }
   };
   const updateBlog = async (data: FieldValues) => {
@@ -195,17 +209,31 @@ export default function UpdateBlog() {
                         </div>
                       </div>
                       <div className="col-6 d-flex">
-                      <div className="form-group col-6 p-0 mr-1">
+                        <div className="form-group col-6 p-0 mr-1">
                           <label htmlFor="exampleInputFile">Icon</label>
                           <div className="">
-                            <label htmlFor="upload1" className="form-control overflow-hidden w-100">
-                              {iconName}
+                            <label
+                              htmlFor="upload1"
+                              className="form-control overflow-hidden w-100"
+                            >
+                              {isIconLoading ? (
+                                <i
+                                  className="fa  fa-spin border-2 inline-block p-2 "
+                                  style={{
+                                    borderRadius: "100%",
+                                    borderBottom: "none",
+                                    borderTop: "none",
+                                    width: "4px"
+                                  }}
+                                />
+                              ) : (
+                                iconName
+                              )}
                             </label>
 
                             <input
                               id={`upload1`}
                               className="form-control col-6"
-                              
                               type="file"
                               {...register(`icon`, {
                                 onChange: async (e) => {
@@ -219,8 +247,23 @@ export default function UpdateBlog() {
                         <div className="form-group col-6 p-0">
                           <label htmlFor="exampleInputFile">Image</label>
                           <div className="d-flex">
-                            <label htmlFor="upload" className="form-control overflow-hidden" >
-                              {imageName}
+                            <label
+                              htmlFor="upload"
+                              className="form-control overflow-hidden"
+                            >
+                              {isImageLoading ? (
+                                <i
+                                  className="fa  fa-spin border-2 inline-block p-2 "
+                                  style={{
+                                    borderRadius: "100%",
+                                    borderBottom: "none",
+                                    borderTop: "none",
+                                    width: "4px"
+                                  }}
+                                />
+                              ) : (
+                                imageName
+                              )}
                             </label>
                             <input
                               id={`upload`}
@@ -277,7 +320,10 @@ export default function UpdateBlog() {
                     {/* <!-- /.card-body --> */}
 
                     <div className="card-footer text-center">
-                      <button type="submit" className="btn btn-primary p-0 m-0 ">
+                      <button
+                        type="submit"
+                        className="btn btn-primary p-0 m-0 "
+                      >
                         Update
                       </button>
                     </div>

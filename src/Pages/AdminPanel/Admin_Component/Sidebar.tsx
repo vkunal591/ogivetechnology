@@ -1,6 +1,6 @@
 import "./Css/sidebars.css";
 import logo from "../../../assets/logo-footer.43e2938c.png";
-import person from "../../../assets/nurse.70105458.png";
+// import person from "../../../assets/nurse.70105458.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -71,60 +71,62 @@ export default function Sidebar() {
         }
       ]
     },
-    // {
-    //   name: "Site Setting",
-    //   icon: "gear",
-    //   submenuId: "submenu5",
-    //   subMenu: [
-    //     {
-    //       name: "Site Edit",
-    //       link: "site/edit",
-    //       icon: "edit"
-    //     },
-    //     {
-    //       name: "Theame",
-    //       link: "site/theame",
-    //       icon: "brush"
-    //     },
-    //     {
-    //       name: "Media",
-    //       link: "site/media",
-    //       icon: "image"
-    //     },
-    //     {
-    //       name: "Settings",
-    //       link: "site/settings",
-    //       icon: "gear"
-    //     }
-    //   ]
-    // }
+    {
+      name: "Site Setting",
+      icon: "gear",
+      submenuId: "submenu5",
+      subMenu: [
+        {
+          name: "Landing Page Setup",
+          link: "site/landigpagedetails",
+          icon: "fa-swatchbook"
+        },
+        {
+          name: "Update Landing Page",
+          link: "site/updatelandigpagedetails",
+          icon: "fa-file-pen"
+        }
+        // {
+        //   name: "Media",
+        //   link: "site/media",
+        //   icon: "image"
+        // },
+        // {
+        //   name: "Settings",
+        //   link: "site/settings",
+        //   icon: "gear"
+        // }
+      ]
+    }
   ];
   return (
     <>
       <aside className="main-sidebar position-fixed sidebar-dark-primary elevation-4">
-        <Link to="/" className="brand-link">
+        <Link to="/" className="brand-link text-left">
           <img
             src={logo}
             alt="AdminLTE Logo"
-            className="brand-image "
+            className="brand-image mr-0 ml-3 "
             style={{ opacity: "" }}
           />
           <span className="brand-text font-weight-light">Technology</span>
         </Link>
         <div className="user-panel mt-3 pb-0 mb-3 d-flex">
           <div className="image">
-            <img
-              src={person}
+            {/* <img
+              src={logo}
+              width={50}
+              height={50}
               className="img-circle elevation-2"
               alt="User Image"
-            />
+            /> */}
           </div>
           <div className="info">
             <Link
-              to="/admin/viewprofile"
+              to="/admin/users/viewprofile"
               className="d-block nav-link text-white"
             >
-              Alexander Pierce
+              Ogive Admin Panel
             </Link>
           </div>
         </div>
@@ -144,12 +146,12 @@ export default function Sidebar() {
                       id={`menu${index}`}
                       key={index}
                     >
-                      <a 
+                      <a
                         className={` ${menu?.subMenu.length ? "nav-link" : ""}`}
                         onClick={() => openMenu(`menu${index}`)}
                       >
                         <i className={`nav-icon fas fa-${menu?.icon}`}></i>
-                        <p >
+                        <p>
                           {menu?.name}
                           <i
                             className={`right fas fa-angle-${

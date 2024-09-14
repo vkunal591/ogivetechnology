@@ -169,3 +169,119 @@ top: -150%;
 .slick-slider button::before {
   color: var(--cs-primaryHeading);
 }
+
+
+
+
+/* Mobile  */
+@media (min-width: 310px) and (max-width: 767px) {
+.mobile-testomonial {
+  padding: 0px!important;
+}
+
+figure.snip1390{
+  max-width: 100%!important;
+  max-height: 550px!important;
+  min-height: 350px!important;
+
+  margin: 0px!important;
+  padding: 0px!important;
+  
+}
+
+.bg-box-style:before{
+  min-height: 350px!important;
+}
+figure.snip1390 blockquote{
+  height: 250px!important;
+}
+
+blockquote h1{
+  font-size: 20px!important;
+}
+blockquote h1:before {
+  width: 50px;
+  height: 5px;
+  display: block;
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 42%;
+  top: 32%;
+  margin-left: -14px;
+  background-color: var(--theamColor);
+}
+.mobile-testo-heading{
+  padding-left: 100px!important;
+  margin: 0px!important;
+  margin-top: 10px!important;
+  z-index: 400;
+  font-size: 18px;
+}
+
+
+.teso-img{
+  width: 40%;
+}
+.testo-title{
+  font-size:14px!important;
+}
+
+.testo-desc{
+  font-size: 11px!important;
+
+}
+
+figure.snip1390 .squar {
+  width: 115px;
+  display: inline-block;
+  border: none;
+  margin-bottom: 10px;
+  position: absolute;
+  z-index: 4;
+  left: 5%;
+  top: 52%;
+  background-color: #fec08f;
+  height: 80px;
+}
+figure.snip1390 .circle1 {
+  width: 115px;
+  border-radius: 50% / 100% 100% 0 0;
+  display: inline-block;
+  border: none;
+  margin-bottom: 10px;
+  position: absolute;
+  z-index: 5;
+  left: 5%;
+  top: 36%;
+  background-color: #fec08f;
+  height: 60px;
+}
+figure.snip1390 .circle2 {
+  width: 115px;
+  border-radius: 50% / 0 0 100% 100%;
+  border: none;
+  display: inline-block;
+  margin-bottom: 10px;
+  position: absolute;
+  z-index: 15;
+  left: 5%;
+  top: 73%;
+  background-color: #fec08f;
+  height: 60px;
+  overflow-y: visible;
+}
+.circle2 img{
+  width: 90%!important;
+  margin: auto 5%!important;
+  height:120px!important;
+  top: -105%!important;
+}
+
+.bg-box-style:before {
+min-width: 50px;
+max-width: 80px;
+}
+
+
+}
